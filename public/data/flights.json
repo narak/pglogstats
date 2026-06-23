@@ -21,9 +21,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -50,9 +47,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -79,9 +73,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -108,9 +99,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -137,9 +125,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -166,9 +151,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -195,9 +177,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -224,9 +203,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -253,9 +229,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -282,9 +255,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -311,9 +281,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -340,9 +307,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -369,9 +333,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -398,9 +359,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -427,9 +385,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -456,9 +411,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -485,9 +437,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -514,9 +463,6 @@
       "manufacturer": "Phi",
       "model": "Symphonia 2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -542,9 +488,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -570,9 +513,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -598,9 +538,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -626,9 +563,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -654,9 +588,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -682,9 +613,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -710,9 +638,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -738,9 +663,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": false,
-    "liftSoaring": false,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -766,9 +688,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -794,9 +713,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -822,9 +738,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -850,9 +763,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -878,9 +788,6 @@
       "type": "Glider",
       "manufacturer": "Unknown"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -906,9 +813,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -934,9 +838,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -962,9 +863,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -990,9 +888,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -1018,9 +913,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -1046,9 +938,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -1074,9 +963,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -1102,9 +988,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -1130,9 +1013,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -1158,9 +1038,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -1186,9 +1063,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -1214,9 +1088,6 @@
       "type": "Glider",
       "manufacturer": "PhiSymphonia2"
     },
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": true
   },
@@ -1237,9 +1108,6 @@
     "gliderHint": null,
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": false
   },
@@ -1260,9 +1128,6 @@
     "gliderHint": null,
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": false
   },
@@ -1283,9 +1148,6 @@
     "gliderHint": null,
     "siteId": "lookup-iquique-alto-hospicio-20-2819-70-1076",
     "gear": null,
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": false
   },
@@ -1306,9 +1168,6 @@
     "gliderHint": null,
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": false
   },
@@ -1329,9 +1188,6 @@
     "gliderHint": null,
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": false
   },
@@ -1352,9 +1208,6 @@
     "gliderHint": null,
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": false
   },
@@ -1375,9 +1228,6 @@
     "gliderHint": null,
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": false
   },
@@ -1398,9 +1248,6 @@
     "gliderHint": null,
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": false
   },
@@ -1421,9 +1268,6 @@
     "gliderHint": null,
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": false
   },
@@ -1444,9 +1288,6 @@
     "gliderHint": null,
     "siteId": "lookup-pacifica-dumps-san-francisco-37-6719-122-494",
     "gear": null,
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": false
   },
@@ -1467,9 +1308,6 @@
     "gliderHint": null,
     "siteId": "lookup-ed-levin-300ft-37-4611-121-865",
     "gear": null,
-    "liftThermal": false,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": false
   },
@@ -1490,9 +1328,6 @@
     "gliderHint": null,
     "siteId": "lookup-ed-levin-37-4756-121-861",
     "gear": null,
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": false
   },
@@ -1513,9 +1348,6 @@
     "gliderHint": null,
     "siteId": "lookup-ed-levin-37-4756-121-861",
     "gear": null,
-    "liftThermal": true,
-    "liftSoaring": true,
-    "liftTowing": false,
     "isSledder": false,
     "metadataComplete": false
   }
