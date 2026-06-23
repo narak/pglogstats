@@ -35,8 +35,8 @@ npm run dev
 
 Set the following environment variables (or repo secrets) and run `npm run data:drive`:
 
-- `GDRIVE_SERVICE_ACCOUNT` (or `GOOGLE_SERVICE_ACCOUNT_JSON`) — service-account key JSON (Drive read-only).
-- `GDRIVE_FOLDER_ID` (or `DRIVE_FOLDER_ID`) — the Drive folder containing `.igc` files.
+- `GDRIVE_SERVICE_ACCOUNT` — service-account key JSON (Drive read-only).
+- `GDRIVE_FOLDER_ID` — the Drive folder containing `.igc` files.
 
 ## Build
 

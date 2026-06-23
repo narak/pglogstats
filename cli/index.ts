@@ -212,10 +212,10 @@ async function main(): Promise<void> {
 
   let sources: IgcSource[];
   if (args.mode === 'drive') {
-    const folderId = process.env.DRIVE_FOLDER_ID ?? process.env.GDRIVE_FOLDER_ID;
+    const folderId = process.env.GDRIVE_FOLDER_ID;
     if (!folderId) {
       throw new Error(
-        'Missing Drive folder env var. Set DRIVE_FOLDER_ID or GDRIVE_FOLDER_ID.',
+        'Missing Drive folder env var. Set GDRIVE_FOLDER_ID.',
       );
     }
     console.log(`Listing IGC files in Drive folder ${folderId}...`);

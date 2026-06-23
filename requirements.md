@@ -154,8 +154,8 @@ No Gear route.
 - GitHub Actions must run data generation and SPA build on push/manual dispatch.
 - Workflow must commit updated `public/data/flights.json` and `public/data/sites.json` when changed.
 - Required secrets:
-  - `GOOGLE_SERVICE_ACCOUNT_JSON` or `GDRIVE_SERVICE_ACCOUNT`
-  - `DRIVE_FOLDER_ID` or `GDRIVE_FOLDER_ID`
+  - `GDRIVE_SERVICE_ACCOUNT`
+  - `GDRIVE_FOLDER_ID`
 
 ---
 

@@ -11,11 +11,10 @@ export interface IgcSource {
 }
 
 function getDriveClient() {
-  const raw =
-    process.env.GOOGLE_SERVICE_ACCOUNT_JSON ?? process.env.GDRIVE_SERVICE_ACCOUNT;
+  const raw = process.env.GDRIVE_SERVICE_ACCOUNT;
   if (!raw) {
     throw new Error(
-      'Missing service account JSON env var. Set GOOGLE_SERVICE_ACCOUNT_JSON or GDRIVE_SERVICE_ACCOUNT.',
+      'Missing service account JSON env var. Set GDRIVE_SERVICE_ACCOUNT.',
     );
   }
   const credentials = JSON.parse(raw);
