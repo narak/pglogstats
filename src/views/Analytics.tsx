@@ -29,22 +29,22 @@ interface Props {
   navigate: (path: string, query?: URLSearchParams) => void;
 }
 
-const AXIS_COLOR = '#a1a1aa';
-const GRID_COLOR = '#27272a';
+const AXIS_COLOR = '#766f64';
+const GRID_COLOR = '#e2daca';
 
 const tooltipStyle = {
-  background: '#18181b',
-  border: '1px solid #3f3f46',
+  background: '#fffdfb',
+  border: '1px solid #d9cfbe',
   borderRadius: 8,
   fontSize: 12,
 } as const;
 
 const LIFT_COLORS = {
-  thermal: '#F59E0B',
-  soaring: '#38BDF8',
-  towing: '#A78BFA',
-  sledder: '#94A3B8',
-  unknown: '#71717A',
+  thermal: '#6f9edc',
+  soaring: '#75bd99',
+  towing: '#ea9c72',
+  sledder: '#cbbba2',
+  unknown: '#b2a794',
 };
 
 export function Analytics({ data, navigate }: Props) {
@@ -93,29 +93,36 @@ export function Analytics({ data, navigate }: Props) {
 
   return (
     <>
-      <h1 className="page-title">Analytics</h1>
+      <div>
+        <div className="page-kicker">{derived.length} flights analysed</div>
+        <h1 className="page-title">Analytics</h1>
+      </div>
 
       <Section
         title="Airtime by month"
         action={
-          <label className="toggle">
+          <label className="analytics-toggle">
             <input
+              className="analytics-toggle-input"
               type="checkbox"
               checked={breakdown}
               onChange={(e) => setBreakdown(e.target.checked)}
             />
-            Breakdown
+            <span className="analytics-toggle-track" aria-hidden="true">
+              <span className="analytics-toggle-thumb" />
+            </span>
+            <span className="analytics-toggle-text">{breakdown ? 'By lift' : 'Total'}</span>
           </label>
         }
       >
-        <Card>
-          <div className="chart-box">
+        <Card className="analytics-card">
+          <div className="chart-box analytics-chart-box">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={months} margin={{ top: 8, right: 8, bottom: 0, left: -16 }}>
                 <CartesianGrid stroke={GRID_COLOR} vertical={false} />
                 <XAxis dataKey="label" tick={{ fill: AXIS_COLOR, fontSize: 11 }} interval={0} angle={-30} textAnchor="end" height={50} />
                 <YAxis tick={{ fill: AXIS_COLOR, fontSize: 11 }} />
-                <Tooltip contentStyle={tooltipStyle} cursor={{ fill: '#ffffff10' }} />
+                <Tooltip contentStyle={tooltipStyle} cursor={{ fill: '#f3ece0' }} />
                 {breakdown ? (
                   <>
                     <Bar dataKey="thermal" stackId="a" fill={LIFT_COLORS.thermal} />
@@ -133,18 +140,18 @@ export function Analytics({ data, navigate }: Props) {
       </Section>
 
       <Section title="Lift breakdown over time">
-        <Card>
+        <Card className="analytics-card">
           {years.length === 0 ? (
             <EmptyState message="No data yet." />
           ) : (
             <>
-              <div className="chart-box">
+              <div className="chart-box analytics-chart-box">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={years} margin={{ top: 8, right: 8, bottom: 0, left: -16 }}>
                     <CartesianGrid stroke={GRID_COLOR} vertical={false} />
                     <XAxis dataKey="label" tick={{ fill: AXIS_COLOR, fontSize: 11 }} />
                     <YAxis tick={{ fill: AXIS_COLOR, fontSize: 11 }} />
-                    <Tooltip contentStyle={tooltipStyle} cursor={{ fill: '#ffffff10' }} />
+                    <Tooltip contentStyle={tooltipStyle} cursor={{ fill: '#f3ece0' }} />
                     <Bar dataKey="thermal" stackId="a" fill={LIFT_COLORS.thermal} />
                     <Bar dataKey="soaring" stackId="a" fill={LIFT_COLORS.soaring} />
                     <Bar dataKey="towing" stackId="a" fill={LIFT_COLORS.towing} />
@@ -158,7 +165,7 @@ export function Analytics({ data, navigate }: Props) {
       </Section>
 
       <Section title="Flights and hours per site">
-        <Card>
+        <Card className="analytics-card">
           <RankedBars
             rows={sites.map((s) => ({
               label: s.name,
@@ -170,7 +177,7 @@ export function Analytics({ data, navigate }: Props) {
       </Section>
 
       <Section title="Hours per glider">
-        <Card>
+        <Card className="analytics-card">
           {gliders.length === 0 ? (
             <EmptyState message="No matched gear yet." />
           ) : (
@@ -185,11 +192,11 @@ export function Analytics({ data, navigate }: Props) {
       </Section>
 
       <Section title="Duration vs altitude (scatter)">
-        <Card>
+        <Card className="analytics-card">
           {durationScatter.length === 0 ? (
             <EmptyState message="No data yet." />
           ) : (
-            <div className="chart-box">
+            <div className="chart-box analytics-chart-box">
               <ResponsiveContainer width="100%" height="100%">
                 <ScatterChart margin={{ top: 8, right: 12, bottom: 0, left: 4 }}>
                   <CartesianGrid stroke={GRID_COLOR} />
@@ -207,14 +214,14 @@ export function Analytics({ data, navigate }: Props) {
                   />
                   <ZAxis type="number" dataKey="z" range={[30, 180]} />
                   <Tooltip
-                    cursor={{ strokeDasharray: '3 3' }}
+                    cursor={{ stroke: '#d1c7b7', strokeDasharray: '3 3' }}
                     contentStyle={tooltipStyle}
                     content={<ScatterTooltip />}
                   />
                   <Scatter
                     name="Flights"
                     data={durationScatter}
-                    fill="#38bdf8"
+                    fill={LIFT_COLORS.thermal}
                     line={false}
                   >
                     {durationScatter.map((entry) => (
@@ -310,7 +317,10 @@ function RankedBars({
   const data = rows.map((r) => ({ ...r }));
   if (data.length === 0) return <EmptyState message="No data yet." />;
   return (
-    <div style={{ width: '100%', height: Math.max(120, data.length * 44) }}>
+    <div
+      className="analytics-ranked-wrap"
+      style={{ width: '100%', height: Math.max(120, data.length * 44) }}
+    >
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} layout="vertical" margin={{ top: 0, right: 16, bottom: 0, left: 8 }}>
           <CartesianGrid stroke={GRID_COLOR} horizontal={false} />
@@ -321,10 +331,21 @@ function RankedBars({
             tick={{ fill: AXIS_COLOR, fontSize: 12 }}
             width={110}
           />
-          <Tooltip contentStyle={tooltipStyle} cursor={{ fill: '#ffffff10' }} />
-          <Bar dataKey="hours" fill="#38bdf8" radius={[0, 3, 3, 0]}>
+          <Tooltip contentStyle={tooltipStyle} cursor={{ fill: '#f3ece0' }} />
+          <Bar dataKey="hours" fill="#6f9edc" radius={[0, 3, 3, 0]}>
             {data.map((_, i) => (
-              <Cell key={i} />
+              <Cell
+                key={i}
+                fill={
+                  i % 4 === 0
+                    ? '#6f9edc'
+                    : i % 4 === 1
+                    ? '#75bd99'
+                    : i % 4 === 2
+                    ? '#ea9c72'
+                    : '#b2a794'
+                }
+              />
             ))}
           </Bar>
         </BarChart>
@@ -344,7 +365,7 @@ function TopTable({
 }) {
   if (rows.length === 0) return <EmptyState message="No data yet." />;
   return (
-    <div className="table-wrap">
+    <div className="table-wrap analytics-top-table">
       <table>
         <thead>
           <tr>

@@ -147,7 +147,12 @@ export function FlightLog({ data, route, navigate }: Props) {
 
   return (
     <>
-      <h1 className="page-title">Flight Log</h1>
+      <div>
+        <div className="page-kicker">
+          {sorted.length} of {derived.length} flights
+        </div>
+        <h1 className="page-title">Flight log</h1>
+      </div>
 
       <div className="filter-bar">
         <MultiSelectFilter
@@ -236,7 +241,7 @@ export function FlightLog({ data, route, navigate }: Props) {
         </div>
       )}
 
-      <span className="result-count mono">{sorted.length} flights</span>
+      <span className="result-count">{sorted.length} flights</span>
       <FilterStats flights={sorted} />
 
       {sorted.length === 0 ? (
@@ -362,27 +367,27 @@ function FilterStats({ flights }: { flights: DerivedFlight[] }) {
     .reduce((a, f) => a + f.flight.durationMinutes, 0);
   const avgMinutes = flights.length ? totalMinutes / flights.length : 0;
   return (
-    <div className="card">
-      <div className="lift-row">
-        <div className="lift-item">
-          <span className="muted">Filtered flights</span>
-          <span className="lift-value mono">{flights.length}</span>
+    <div className="card flight-stats-card">
+      <div className="flight-stats-grid">
+        <div className="flight-stats-item">
+          <span className="flight-stats-label">Filtered flights</span>
+          <span className="flight-stats-value mono">{flights.length}</span>
         </div>
-        <div className="lift-item">
-          <span className="muted">Total hours</span>
-          <span className="lift-value mono">{fmtNum(totalMinutes / 60, 1)} h</span>
+        <div className="flight-stats-item">
+          <span className="flight-stats-label">Total hours</span>
+          <span className="flight-stats-value mono">{fmtNum(totalMinutes / 60, 1)} h</span>
         </div>
-        <div className="lift-item">
-          <span className="muted">Avg duration</span>
-          <span className="lift-value mono">{fmtDuration(avgMinutes)}</span>
+        <div className="flight-stats-item">
+          <span className="flight-stats-label">Avg duration</span>
+          <span className="flight-stats-value mono">{fmtDuration(avgMinutes)}</span>
         </div>
-        <div className="lift-item">
-          <span className="muted">Thermal hours</span>
-          <span className="lift-value mono">{fmtNum(thermalMinutes / 60, 1)} h</span>
+        <div className="flight-stats-item">
+          <span className="flight-stats-label">Thermal hours</span>
+          <span className="flight-stats-value mono">{fmtNum(thermalMinutes / 60, 1)} h</span>
         </div>
-        <div className="lift-item">
-          <span className="muted">Soaring hours</span>
-          <span className="lift-value mono">{fmtNum(soaringMinutes / 60, 1)} h</span>
+        <div className="flight-stats-item">
+          <span className="flight-stats-label">Soaring hours</span>
+          <span className="flight-stats-value mono">{fmtNum(soaringMinutes / 60, 1)} h</span>
         </div>
       </div>
     </div>

@@ -26,9 +26,9 @@ function gotoFlight(
 
 function LiftStat({ label, hours }: { label: string; hours: number }) {
   return (
-    <div className="lift-item">
-      <span className="muted">{label}</span>
-      <span className="lift-value mono">{fmtHours(hours * 60)}</span>
+    <div className="lift-item dashboard-lift-item">
+      <span className="muted dashboard-lift-label">{label}</span>
+      <span className="lift-value mono dashboard-lift-value">{fmtHours(hours * 60)}</span>
     </div>
   );
 }
@@ -81,22 +81,25 @@ export function Dashboard({ data, navigate }: Props) {
 
   return (
     <>
-      <h1 className="page-title">Dashboard</h1>
+      <div>
+        <div className="page-kicker">Pilot logbook</div>
+        <h1 className="page-title">Lifetime summary</h1>
+      </div>
 
       <Section title="Lifetime">
-        <div className="stat-grid">
+        <div className="stat-grid dashboard-stat-grid">
           <StatCard value={fmtInt(summary.totalFlights)} label="Flights" />
           <StatCard value={fmtNum(summary.totalHours, 1)} label="Airtime (h)" />
           <StatCard value={fmtInt(summary.uniqueSites)} label="Sites" />
         </div>
-        <Card>
-          <div className="lift-row">
+        <Card className="dashboard-lift-card">
+          <div className="lift-row dashboard-lift-row">
             <LiftStat label="Thermal" hours={lift.thermalHours} />
             <LiftStat label="Soaring" hours={lift.soaringHours} />
             <LiftStat label="Towing" hours={lift.towingHours} />
           </div>
           <div className="divider" />
-          <span className="muted">
+          <span className="muted dashboard-sledder-text">
             Sledders: <span className="mono">{lift.sledderCount}</span> flights ·{' '}
             <span className="mono">{fmtHours(lift.sledderHours * 60)}</span>
           </span>
@@ -128,7 +131,7 @@ export function Dashboard({ data, navigate }: Props) {
       )}
 
       <Section title="Personal records">
-        <Card>
+        <Card className="dashboard-records-card">
           <div className="rec-grid two-col">
             {recordRow('Longest flight', records.longestFlight, (e) => ({
               value: fmtDuration(e.value),
@@ -156,16 +159,29 @@ export function Dashboard({ data, navigate }: Props) {
 
       {sitesFlown.length > 0 && (
         <Section title="Sites flown">
-          <Card>
-            <div className="rec-grid">
-              {sitesFlown.map(({ site, flights, hours }) => (
+          <Card className="sites-card">
+            <div className="sites-list">
+              {sitesFlown.sort((a, b) => b.hours - a.hours).map(({ site, flights, hours }) => (
                 <details key={site.id} className="site-details">
-                  <summary className="site-summary rec-row">
-                    <span className="rec-label">
-                      {site.name} <span className="subtle">({site.country || '—'})</span>
+                  <summary className="site-summary">
+                    <span className="site-summary-main">
+                      <span className="site-summary-title">
+                        {site.name}
+                        <span className="site-country">{site.country || '—'}</span>
+                      </span>
+                      <span className="site-summary-subtle">
+                        {site.region || ''}
+                      </span>
                     </span>
-                    <span className="rec-value mono">
-                      {flights}× · {fmtNum(hours, 1)} h
+                    <span className="site-summary-metrics">
+                      <span className="site-metric">
+                        <span className="site-metric-label">Flights</span>
+                        <span className="site-metric-value mono">{flights}</span>
+                      </span>
+                      <span className="site-metric">
+                        <span className="site-metric-label">Airtime</span>
+                        <span className="site-metric-value mono">{fmtNum(hours, 1)}h</span>
+                      </span>
                     </span>
                   </summary>
                   <div className="site-body">
@@ -229,13 +245,14 @@ export function Dashboard({ data, navigate }: Props) {
       )}
 
       {incomplete > 0 && (
-        <Card className="notice">
-          <span>
-            <span className="mono">{incomplete}</span> flight{incomplete === 1 ? '' : 's'} with
+        <Card className="notice dashboard-notice">
+          <span className="dashboard-notice-copy">
+            <span className="mono dashboard-notice-value">{incomplete}</span> flight
+            {incomplete === 1 ? '' : 's'} with
             incomplete metadata.
           </span>
           <span
-            className="link"
+            className="link dashboard-notice-link"
             onClick={() =>
               navigate('/flights', new URLSearchParams({ metadata: 'incomplete' }))
             }

@@ -12,8 +12,11 @@ export function Nav({ path }: NavProps) {
   return (
     <header className="nav">
       <div className="nav-inner">
-        <a href="#/" className="wordmark">
-          PgLogStats
+        <a href="#/" className="brand" aria-label="PgLogStats home">
+          <span className="brand-mark" aria-hidden="true">
+            <span className="brand-chevron" />
+          </span>
+          <span className="wordmark">PgLogStats</span>
         </a>
         <nav className="nav-links">
           {LINKS.map((l) => {
