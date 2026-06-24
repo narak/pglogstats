@@ -642,31 +642,6 @@
     "metadataComplete": true
   },
   {
-    "id": "2026-03-23T04:01:50Z",
-    "sourceFileName": "2026-03-23-XTR-5907567A1A1E-04.IGC",
-    "date": "2026-03-23",
-    "takeoffTime": "2026-03-23T04:01:50Z",
-    "landingTime": "2026-03-23T04:22:00Z",
-    "durationMinutes": 20.2,
-    "takeoffLat": 37.4863,
-    "takeoffLon": -122.2332,
-    "maxAltitudeAmsl": 24,
-    "maxClimbRate": 0.9,
-    "maxSinkRate": -0.7,
-    "radialDistanceKm": 17.36,
-    "longestXcKm": 17.36,
-    "gliderHint": "PhiSymphonia2",
-    "siteId": "lookup-windy-hill-portola-valley-ca-37-3681-122-249",
-    "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
-      "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
-    },
-    "isSledder": false,
-    "metadataComplete": true
-  },
-  {
     "id": "2026-03-23T01:11:16Z",
     "sourceFileName": "2026-03-23-XTR-5907567A1A1E-02.IGC",
     "date": "2026-03-23",
