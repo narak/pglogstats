@@ -4,22 +4,12 @@
 // API reference:
 // https://paraglidingearth.com/api/#:~:text=Get%20sites%20around%20a%20given,com%2Fapi%2FgetAroundLatLngSites.php
 
+import { haversineKm } from '../src/shared/domain';
 import type { SiteLookupResult } from './config';
 
 interface SiteCandidate extends SiteLookupResult {
   lat: number;
   lon: number;
-}
-
-function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const R = 6371;
-  const toR = Math.PI / 180;
-  const dLat = (lat2 - lat1) * toR;
-  const dLon = (lon2 - lon1) * toR;
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos(lat1 * toR) * Math.cos(lat2 * toR) * Math.sin(dLon / 2) ** 2;
-  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
 const lookupCache = new Map<string, SiteLookupResult | null>();

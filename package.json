@@ -1,6 +1,6 @@
 {
   "name": "pglogstats",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Statically generated paragliding flight statistics report (IGC -> SPA)",
   "license": "MIT",
   "type": "module",

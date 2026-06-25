@@ -66,8 +66,6 @@ export function deriveFlight(
     liftThermal,
     liftSoaring,
     liftTowing,
-    isSledder: flight.isSledder,
-    metadataComplete: missing.length === 0,
     missing,
   };
 }
@@ -78,6 +76,15 @@ export function deriveAll(
 ): DerivedFlight[] {
   const siteById = new Map(sites.map((s) => [s.id, s] as const));
   return flights.map((f) => deriveFlight(f, siteById));
+}
+
+/** Single-word lift category for a flight, used by the log and analytics views. */
+export function liftLabel(f: DerivedFlight): string {
+  if (f.flight.isSledder) return 'Sledder';
+  if (f.liftTowing) return 'Towing';
+  if (f.liftThermal) return 'Thermal';
+  if (f.liftSoaring) return 'Soaring';
+  return 'Unknown';
 }
 
 // ── Formatting helpers ────────────────────────────────────────────────────────

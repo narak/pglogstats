@@ -8,7 +8,7 @@ and engineering conventions). Product scope and feature requirements live in
 
 ## 1. Design Principles
 
-- Data-first and legible outdoors (high contrast, restrained styling).
+- Data-first and legible outdoors (warm, low-glare surfaces; restrained styling).
 - Mobile-first layouts with touch-safe controls.
 - Read-only interaction model.
 - Predictable navigation and filter state persistence.
@@ -19,37 +19,42 @@ and engineering conventions). Product scope and feature requirements live in
 
 ### 2.1 Theme
 
-- Dark-first only; no light-mode toggle.
+- Single light/warm theme only; no theme toggle. (Palette defined as CSS custom
+  properties in `src/styles.css` — that file is the source of truth for exact values.)
 - Core palette:
-  - background `#09090b`
-  - surface `#18181b`
-  - elevated `#27272a`
-  - border `#3f3f46`
-  - text `#fafafa`
-  - muted `#a1a1aa`
-  - accent `#38bdf8`
+  - background `#efe9dd`
+  - surface `#fffdf8`
+  - ink (text) `#1a1814`
+  - muted `#78736b`
+  - border `#e6dfd0`
+  - accent `#1d6fe0` (blue), with green `#2f9e6b` and orange `#e0683a` accents
+- Dark "ink" panels (e.g. the lifetime stat grid) are used as deliberate contrast
+  blocks against the light background.
 
 ### 2.2 Typography
 
+- Display/headings: Bricolage Grotesque (page titles, section titles, wordmark).
 - UI text: DM Sans.
 - Numeric/stat values: DM Mono.
+- Fonts are loaded via a single preconnected `<link>` in `index.html`.
 - Target scale:
-  - page title ~24px
-  - section title ~18px
-  - body/table ~14px
-  - labels/muted ~12px
+  - page title ~40px (display)
+  - section title ~17px (display)
+  - body/table ~13–14px
+  - labels/muted ~10–12px
 
 ### 2.3 Layout and interaction sizing
 
-- Mobile target width: 390px.
-- Content max width: 768px centered.
-- Page padding: 16px mobile, 24px tablet+.
-- Minimum tap target: 44x44.
+- Mobile target width: ~390px.
+- Content max width: 760px centered.
+- Page padding: 14px mobile, 18px tablet+.
+- Minimum tap target: ~40–44px.
 
 ### 2.4 Motion and decoration constraints
 
-- Avoid gradients, glass effects, and decorative animation.
-- Keep state transitions simple and functional.
+- Restrained decoration: subtle gradients and soft shadows are allowed on cards
+  and notices; avoid glass effects and decorative/looping animation.
+- Keep state transitions simple and functional (short hover/toggle transitions only).
 
 ---
 

@@ -1,9 +1,15 @@
+import { Suspense, lazy } from 'react';
 import { Nav } from './components/Nav';
 import { useData } from './lib/useData';
 import { useHashRoute } from './lib/useHashRoute';
 import { Dashboard } from './views/Dashboard';
 import { FlightLog } from './views/FlightLog';
-import { Analytics } from './views/Analytics';
+
+// Analytics pulls in Recharts, the heaviest dependency. Load it on demand so the
+// Dashboard and Flight Log don't pay for the charting bundle up front.
+const Analytics = lazy(() =>
+  import('./views/Analytics').then((m) => ({ default: m.Analytics })),
+);
 
 export default function App() {
   const state = useData();
@@ -25,6 +31,8 @@ export default function App() {
 
   const { data } = state;
   const path = route.path;
+  const isKnown =
+    path === '/' || path.startsWith('/flights') || path.startsWith('/analytics');
 
   return (
     <div className="app">
@@ -34,10 +42,12 @@ export default function App() {
         {path.startsWith('/flights') && (
           <FlightLog data={data} route={route} navigate={navigate} />
         )}
-        {path.startsWith('/analytics') && <Analytics data={data} navigate={navigate} />}
-        {!['/', '/flights', '/analytics'].some((p) =>
-          p === '/' ? path === '/' : path.startsWith(p),
-        ) && <div className="empty">Page not found.</div>}
+        {path.startsWith('/analytics') && (
+          <Suspense fallback={<div className="empty">Loading analytics…</div>}>
+            <Analytics data={data} navigate={navigate} />
+          </Suspense>
+        )}
+        {!isKnown && <div className="empty">Page not found.</div>}
       </main>
     </div>
   );

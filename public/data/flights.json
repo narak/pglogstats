@@ -16,10 +16,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-ed-levin-600ft-37-4613-121-86",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -483,10 +484,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-ed-levin-37-4756-121-861",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -508,10 +510,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-ed-levin-37-4756-121-861",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -533,10 +536,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-dunlap-36-7642-119-098",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -558,10 +562,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-dunlap-36-7642-119-098",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -583,10 +588,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-dunlap-36-7642-119-098",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -608,10 +614,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-dunlap-36-7642-119-098",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -633,10 +640,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-dunlap-36-7642-119-098",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -658,10 +666,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-mussel-rock-aka-the-dumps-37-6708-122-494",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -683,10 +692,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-pacifica-dumps-san-francisco-37-6719-122-494",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -708,10 +718,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-pacifica-dumps-san-francisco-37-6719-122-494",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -733,10 +744,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-gravedad-cero-tapalpa-jalisco-19-9422-103-654",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -757,14 +769,9 @@
     "longestXcKm": 4.59,
     "gliderHint": "Unknown",
     "siteId": "lookup-gravedad-cero-tapalpa-jalisco-19-9422-103-654",
-    "gear": {
-      "id": "gear-unknown",
-      "name": "Unknown",
-      "type": "Glider",
-      "manufacturer": "Unknown"
-    },
+    "gear": null,
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": false
   },
   {
     "id": "2026-02-20T16:23:29Z",
@@ -783,10 +790,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-gravedad-cero-tapalpa-jalisco-19-9422-103-654",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -808,10 +816,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-gravedad-cero-tapalpa-jalisco-19-9422-103-654",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -833,10 +842,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-gravedad-cero-tapalpa-jalisco-19-9422-103-654",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -858,10 +868,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-gravedad-cero-tapalpa-jalisco-19-9422-103-654",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -883,10 +894,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-gravedad-cero-tapalpa-jalisco-19-9422-103-654",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -908,10 +920,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-gravedad-cero-tapalpa-jalisco-19-9422-103-654",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -933,10 +946,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-gravedad-cero-tapalpa-jalisco-19-9422-103-654",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -958,10 +972,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-gravedad-cero-tapalpa-jalisco-19-9422-103-654",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -983,10 +998,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-gravedad-cero-tapalpa-jalisco-19-9422-103-654",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -1008,10 +1024,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-gravedad-cero-tapalpa-jalisco-19-9422-103-654",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -1033,10 +1050,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-gravedad-cero-tapalpa-jalisco-19-9422-103-654",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -1058,10 +1076,11 @@
     "gliderHint": "PhiSymphonia2",
     "siteId": "lookup-gravedad-cero-tapalpa-jalisco-19-9422-103-654",
     "gear": {
-      "id": "gear-phisymphonia2",
-      "name": "PhiSymphonia2",
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
       "type": "Glider",
-      "manufacturer": "PhiSymphonia2"
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
     },
     "isSledder": false,
     "metadataComplete": true

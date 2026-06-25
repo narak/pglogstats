@@ -14,6 +14,7 @@ import {
 } from 'recharts';
 import { Card, EmptyState, Section } from '../components/primitives';
 import { fmtDate, fmtDuration, fmtNum } from '../lib/format';
+import { liftLabel } from '../shared/domain';
 import type { AppData } from '../lib/useData';
 import {
   airtimeByMonth,
@@ -77,7 +78,7 @@ export function Analytics({ data, navigate }: Props) {
     x: Number(f.flight.durationMinutes.toFixed(1)),
     y: Number(f.flight.maxAltitudeAmsl.toFixed(0)),
     z: Number((f.flight.radialDistanceKm + 0.1).toFixed(2)),
-    date: f.flight.date,
+    date: f.flight.takeoffTime,
     site: f.site?.name || 'Unknown',
     lift: liftLabel(f),
     climb: Number(f.flight.maxClimbRate.toFixed(1)),
@@ -258,14 +259,6 @@ export function Analytics({ data, navigate }: Props) {
   );
 }
 
-function liftLabel(f: DerivedFlight): string {
-  if (f.isSledder) return 'Sledder';
-  if (f.liftTowing) return 'Towing';
-  if (f.liftThermal) return 'Thermal';
-  if (f.liftSoaring) return 'Soaring';
-  return 'Unknown';
-}
-
 function liftColor(lift: string): string {
   if (lift === 'Thermal') return LIFT_COLORS.thermal;
   if (lift === 'Soaring') return LIFT_COLORS.soaring;
@@ -377,7 +370,7 @@ function TopTable({
         <tbody>
           {rows.map((f) => (
             <tr key={f.flight.id} className="flight-row" onClick={() => onPick(f)}>
-              <td>{fmtDate(f.flight.date)}</td>
+              <td>{fmtDate(f.flight.takeoffTime)}</td>
               <td>{f.site?.name || 'Unknown'}</td>
               <td className="col-num">{value(f)}</td>
             </tr>

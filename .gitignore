@@ -18,8 +18,6 @@ pnpm-debug.log*
 
 # Caches / temp
 .npm-cache/
-.npmcache2/
-.npmtest/
 node_modules/.tmp/
 *.tsbuildinfo
 

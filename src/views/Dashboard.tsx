@@ -113,7 +113,7 @@ export function Dashboard({ data, navigate }: Props) {
               <div className="recent-top">
                 <span>
                   <span className="muted">Last flight</span>{' '}
-                  {fmtDate(recent.lastFlight.flight.date)} ·{' '}
+                  {fmtDate(recent.lastFlight.flight.takeoffTime)} ·{' '}
                   {recent.lastFlight.site?.name || 'Unknown site'} ·{' '}
                   <span className="mono">
                     {fmtDuration(recent.lastFlight.flight.durationMinutes)}
@@ -135,23 +135,23 @@ export function Dashboard({ data, navigate }: Props) {
           <div className="rec-grid two-col">
             {recordRow('Longest flight', records.longestFlight, (e) => ({
               value: fmtDuration(e.value),
-              meta: `${fmtDate(e.flight.flight.date)} · ${e.flight.site?.name || 'Unknown'}`,
+              meta: `${fmtDate(e.flight.flight.takeoffTime)} · ${e.flight.site?.name || 'Unknown'}`,
             }))}
             {recordRow('Highest altitude (AMSL)', records.highestAltitude, (e) => ({
               value: `${fmtInt(e.value)} m`,
-              meta: fmtDate(e.flight.flight.date),
+              meta: fmtDate(e.flight.flight.takeoffTime),
             }))}
             {recordRow('Best climb rate', records.bestClimbRate, (e) => ({
               value: `${fmtNum(e.value, 1)} m/s`,
-              meta: fmtDate(e.flight.flight.date),
+              meta: fmtDate(e.flight.flight.takeoffTime),
             }))}
             {recordRow('Furthest from takeoff', records.furthestFromTakeoff, (e) => ({
               value: `${fmtNum(e.value, 1)} km`,
-              meta: fmtDate(e.flight.flight.date),
+              meta: fmtDate(e.flight.flight.takeoffTime),
             }))}
             {recordRow('Longest XC', records.longestXc, (e) => ({
               value: `${fmtNum(e.value, 1)} km`,
-              meta: fmtDate(e.flight.flight.date),
+              meta: fmtDate(e.flight.flight.takeoffTime),
             }))}
           </div>
         </Card>
@@ -161,7 +161,7 @@ export function Dashboard({ data, navigate }: Props) {
         <Section title="Sites flown">
           <Card className="sites-card">
             <div className="sites-list">
-              {sitesFlown.sort((a, b) => b.hours - a.hours).map(({ site, flights, hours }) => (
+              {sitesFlown.map(({ site, flights, hours }) => (
                 <details key={site.id} className="site-details">
                   <summary className="site-summary">
                     <span className="site-summary-main">

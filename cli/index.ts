@@ -14,6 +14,7 @@ import { loadConfig } from './config';
 import { listDriveSources, type IgcSource } from './drive';
 import { IgcParseError, parseIgc } from './igc';
 import { lookupNearestParaglidingSite } from './site-lookup';
+import { isIgnoredGearHint, matchGearCatalog } from './gear-catalog';
 import { matchSite } from '../src/shared/domain';
 import type { Config, Flight, Gear, Site } from '../src/shared/types';
 
@@ -129,16 +130,32 @@ function slug(s: string): string {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
+function gearFromCatalogEntry(entry: ReturnType<typeof matchGearCatalog>): Gear | null {
+  if (!entry) return null;
+  const name = `${entry.manufacturer} ${entry.model}`.trim();
+  return {
+    id: `gear-${slug(name)}`,
+    name,
+    type: entry.type ?? 'Glider',
+    manufacturer: entry.manufacturer || undefined,
+    model: entry.model || undefined,
+  };
+}
+
 function parseGearFromHint(gliderHint: string | null): Gear | null {
-  if (!gliderHint) return null;
-  const tokens = gliderHint.trim().split(/\s+/).filter(Boolean);
+  if (isIgnoredGearHint(gliderHint)) return null;
+  // Prefer the canonical catalog so spelling variants collapse to one glider.
+  const fromCatalog = gearFromCatalogEntry(matchGearCatalog(gliderHint));
+  if (fromCatalog) return fromCatalog;
+  // Fallback heuristic for gliders not yet in the catalog.
+  const tokens = (gliderHint as string).trim().split(/\s+/).filter(Boolean);
   if (tokens.length === 0) return null;
   const manufacturer = tokens[0] ?? '';
   const sizeCandidate = tokens.at(-1) ?? '';
   const hasSize = /^[A-Za-z]$/.test(sizeCandidate) || /^\d{2,3}$/.test(sizeCandidate);
   const modelTokens = hasSize ? tokens.slice(1, -1) : tokens.slice(1);
   const model = modelTokens.join(' ').trim() || undefined;
-  const normalizedName = gliderHint.replace(/\s+/g, ' ').trim();
+  const normalizedName = (gliderHint as string).replace(/\s+/g, ' ').trim();
   return {
     id: `gear-${slug(normalizedName)}`,
     name: normalizedName,
@@ -345,7 +362,9 @@ async function main(): Promise<void> {
         });
       }
     }
-    if (!f.gear) f.gear = parseGearFromHint(f.gliderHint);
+    // Re-derive gear from the raw hint every run so catalog/alias changes apply
+    // to the whole dataset (gear is a pure function of gliderHint).
+    f.gear = parseGearFromHint(f.gliderHint);
     f.isSledder = f.durationMinutes < 8;
     f.metadataComplete = Boolean(f.siteId) && Boolean(f.gear);
     delete (f as unknown as Record<string, unknown>).site;

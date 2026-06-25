@@ -44,7 +44,7 @@ export function hoursByLiftSignals(
     if (f.liftThermal) out.thermalHours += h;
     if (f.liftSoaring) out.soaringHours += h;
     if (f.liftTowing) out.towingHours += h;
-    if (f.isSledder) {
+    if (f.flight.isSledder) {
       out.sledderHours += h;
       out.sledderCount += 1;
     }
@@ -163,7 +163,7 @@ export function airtimeByMonth(
     if (f.liftThermal) bucket.thermal += h;
     if (f.liftSoaring) bucket.soaring += h;
     if (f.liftTowing) bucket.towing += h;
-    if (f.isSledder) bucket.sledder += h;
+    if (f.flight.isSledder) bucket.sledder += h;
   }
   return buckets;
 }
@@ -189,7 +189,7 @@ export function classificationByYear(flights: DerivedFlight[]): YearBucket[] {
     if (f.liftThermal) b.thermal += h;
     if (f.liftSoaring) b.soaring += h;
     if (f.liftTowing) b.towing += h;
-    if (f.isSledder) b.sledder += h;
+    if (f.flight.isSledder) b.sledder += h;
   }
   return [...map.values()].sort((a, b) => a.year.localeCompare(b.year));
 }
@@ -246,5 +246,5 @@ export function topBy(
 }
 
 export function incompleteCount(flights: DerivedFlight[]): number {
-  return flights.filter((f) => !f.metadataComplete).length;
+  return flights.filter((f) => f.missing.length > 0).length;
 }

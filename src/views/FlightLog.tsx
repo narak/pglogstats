@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { EmptyState } from '../components/primitives';
 import { fmtDate, fmtDuration, fmtNum, fmtTime } from '../lib/format';
+import { liftLabel } from '../shared/domain';
 import type { AppData } from '../lib/useData';
 import type { HashRoute } from '../lib/useHashRoute';
 import type { DerivedFlight } from '../shared/types';
@@ -87,8 +88,8 @@ export function FlightLog({ data, route, navigate }: Props) {
       if (to && f.flight.date > to) return false;
       if (durMin && f.flight.durationMinutes < Number(durMin)) return false;
       if (durMax && f.flight.durationMinutes > Number(durMax)) return false;
-      if (metadata === 'complete' && !f.metadataComplete) return false;
-      if (metadata === 'incomplete' && f.metadataComplete) return false;
+      if (metadata === 'complete' && f.missing.length > 0) return false;
+      if (metadata === 'incomplete' && f.missing.length === 0) return false;
       return true;
     });
   }, [derived, q]);
@@ -308,7 +309,7 @@ function FlightRow({
         <td className="hide-mobile col-num">{fmtNum(fl.maxAltitudeAmsl, 0)} m</td>
         <td className="hide-mobile">{f.gear?.name || '—'}</td>
         <td className="hide-mobile">
-          {!f.metadataComplete && (
+          {f.missing.length > 0 && (
             <span
               className="warn-flag"
               title={`Missing: ${f.missing.join(', ')}`}
@@ -347,14 +348,6 @@ function FlightRow({
       )}
     </>
   );
-}
-
-function liftLabel(f: DerivedFlight): string {
-  if (f.isSledder) return 'Sledder';
-  if (f.liftTowing) return 'Towing';
-  if (f.liftThermal) return 'Thermal';
-  if (f.liftSoaring) return 'Soaring';
-  return 'Unknown';
 }
 
 function FilterStats({ flights }: { flights: DerivedFlight[] }) {

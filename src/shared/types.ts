@@ -63,6 +63,7 @@ export interface Flight {
 }
 
 // Runtime wrapper around fully resolved flights (no config-dependent derivation).
+// `isSledder` lives on `flight`; metadata completeness is `missing.length === 0`.
 export interface DerivedFlight {
   flight: Flight;
   site: Site | null;
@@ -70,7 +71,5 @@ export interface DerivedFlight {
   liftThermal: boolean;
   liftSoaring: boolean;
   liftTowing: boolean;
-  isSledder: boolean;
-  metadataComplete: boolean;
   missing: ('site' | 'gear')[];
 }
