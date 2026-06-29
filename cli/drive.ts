@@ -40,10 +40,14 @@ function getDriveClient() {
       'Missing service account JSON env var. Set GDRIVE_SERVICE_ACCOUNT.',
     );
   }
-  const credentials = JSON.parse(raw);
+  const credentials = JSON.parse(raw) as Record<string, unknown>;
+  // Force the current Google OAuth token endpoint in CI. Some older keys still
+  // carry oauth2/v4/token, which has shown flaky stream-closure behavior.
+  credentials.token_uri = 'https://oauth2.googleapis.com/token';
   console.log(
-    `[drive] Initializing auth (project_id=${credentials.project_id ?? 'unknown'}, client_email=${maskEmail(credentials.client_email)})`,
+    `[drive] Initializing auth (project_id=${String(credentials.project_id ?? 'unknown')}, client_email=${maskEmail(typeof credentials.client_email === 'string' ? credentials.client_email : undefined)})`,
   );
+  console.log(`[drive] Using token_uri=${String(credentials.token_uri)}`);
   const auth = new google.auth.GoogleAuth({
     credentials,
     scopes: ['https://www.googleapis.com/auth/drive.readonly'],
