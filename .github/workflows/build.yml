@@ -27,11 +27,22 @@ jobs:
 
       - run: npm ci
 
-      - name: Fetch IGC, parse, write data
+      - name: Fetch IGC, parse, write data (with retries)
         env:
           GDRIVE_SERVICE_ACCOUNT: ${{ secrets.GDRIVE_SERVICE_ACCOUNT }}
           GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
-        run: npm run data:drive
+        run: |
+          for attempt in 1 2 3; do
+            echo "data:drive attempt $attempt/3"
+            if npm run data:drive; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              sleep $((attempt * 15))
+            fi
+          done
+          echo "data:drive failed after 3 attempts"
+          exit 1
 
       - name: Commit data if changed
         run: |
