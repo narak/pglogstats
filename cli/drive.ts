@@ -33,9 +33,7 @@ function formatDriveError(err: unknown): string {
   return `message="${e.message}" code=${code} status=${status ?? 'n/a'} method=${method} url=${url}`;
 }
 
-function getDriveClient(
-  scope: 'readonly' | 'readwrite' = 'readonly',
-) {
+function getDriveClient() {
   const raw = process.env.GDRIVE_SERVICE_ACCOUNT;
   if (!raw) {
     throw new Error(
@@ -50,12 +48,11 @@ function getDriveClient(
     `[drive] Initializing auth (project_id=${String(credentials.project_id ?? 'unknown')}, client_email=${maskEmail(typeof credentials.client_email === 'string' ? credentials.client_email : undefined)})`,
   );
   console.log(`[drive] Using token_uri=${String(credentials.token_uri)}`);
-  const scopeUrl =
-    scope === 'readwrite'
-      ? 'https://www.googleapis.com/auth/drive'
-      : 'https://www.googleapis.com/auth/drive.readonly';
-  const auth = new google.auth.GoogleAuth({ credentials, scopes: [scopeUrl] });
-  console.log(`[drive] Drive client created with ${scope} scope`);
+  const auth = new google.auth.GoogleAuth({
+    credentials,
+    scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+  });
+  console.log('[drive] Drive client created with readonly scope');
   return google.drive({ version: 'v3', auth });
 }
 
@@ -129,8 +126,6 @@ async function listIgc(
         fields: 'nextPageToken,files(id,name,mimeType)',
         pageSize: 1000,
         pageToken,
-        supportsAllDrives: true,
-        includeItemsFromAllDrives: true,
       }),
     );
     for (const item of res.data.files ?? []) {
@@ -164,44 +159,4 @@ export async function listDriveSources(folderId: string): Promise<IgcSource[]> {
       return typeof res.data === 'string' ? res.data : JSON.stringify(res.data);
     },
   }));
-}
-
-/**
- * Archive a single .igc into the Drive folder. Best-effort backup only — the
- * repo's igc/ folder is the source of truth, so callers should treat failures
- * as non-fatal. Requires the service account to have Editor access to the
- * folder (readonly keys will 403 here). Skips upload if a file with the same
- * name already exists in the folder, so re-processed Telegram updates don't
- * create Drive duplicates.
- */
-export async function archiveIgcToDrive(
-  folderId: string,
-  name: string,
-  content: string,
-): Promise<'uploaded' | 'exists'> {
-  const drive = getDriveClient('readwrite');
-  const escapedName = name.replace(/'/g, "\\'");
-  const existing = await retryGoogleCall(`files.list dedup name=${name}`, () =>
-    drive.files.list({
-      q: `'${folderId}' in parents and name = '${escapedName}' and trashed = false`,
-      fields: 'files(id,name)',
-      pageSize: 1,
-      supportsAllDrives: true,
-      includeItemsFromAllDrives: true,
-    }),
-  );
-  if ((existing.data.files ?? []).length > 0) {
-    console.log(`[drive] Archive skipped, already present: ${name}`);
-    return 'exists';
-  }
-  await retryGoogleCall(`files.create name=${name}`, () =>
-    drive.files.create({
-      requestBody: { name, parents: [folderId] },
-      media: { mimeType: 'text/plain', body: content },
-      fields: 'id',
-      supportsAllDrives: true,
-    }),
-  );
-  console.log(`[drive] Archived to Drive: ${name}`);
-  return 'uploaded';
 }

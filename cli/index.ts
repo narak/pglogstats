@@ -1,7 +1,9 @@
 // PgLogStats pipeline CLI (requirements §3).
 //
-//   tsx cli/index.ts --local <dir>      parse a local folder of .igc files
-//   tsx cli/index.ts --drive            fetch from Google Drive (CI mode)
+//   tsx cli/index.ts --local <dir>      parse a local folder of .igc files (default: ./igc)
+//
+// The committed igc/ folder is the source of truth. To pull logs out of Google
+// Drive into igc/, use `npm run sync:drive`.
 //
 // Options:
 //   --config <path>   config.yaml path        (default: ./config.yaml)
@@ -11,7 +13,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import dotenv from 'dotenv';
 import { loadConfig } from './config';
-import { listDriveSources, type IgcSource } from './drive';
+import type { IgcSource } from './drive';
 import { IgcParseError, parseIgc } from './igc';
 import { lookupNearestParaglidingSite } from './site-lookup';
 import { isIgnoredGearHint, matchGearCatalog } from './gear-catalog';
@@ -21,8 +23,7 @@ import type { Config, Flight, Gear, Site } from '../src/shared/types';
 dotenv.config();
 
 interface Args {
-  mode: 'local' | 'drive';
-  localDir?: string;
+  localDir: string;
   configPath: string;
   outDir: string;
 }
@@ -40,17 +41,14 @@ function isBlockedFixturePath(dirPath: string): boolean {
 
 function parseArgs(argv: string[]): Args {
   const args: Args = {
-    mode: 'local',
+    localDir: 'igc',
     configPath: path.resolve('config.yaml'),
     outDir: path.resolve('public/data'),
   };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--local') {
-      args.mode = 'local';
       args.localDir = argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[++i] : 'igc';
-    } else if (a === '--drive') {
-      args.mode = 'drive';
     } else if (a === '--config') {
       args.configPath = path.resolve(argv[++i]);
     } else if (a === '--out') {
@@ -227,26 +225,14 @@ async function main(): Promise<void> {
     existing.map((f) => flightId(normalizeUtcTimestamp(f.takeoffTime, f.date))),
   );
 
-  let sources: IgcSource[];
-  if (args.mode === 'drive') {
-    const folderId = process.env.GDRIVE_FOLDER_ID;
-    if (!folderId) {
-      throw new Error(
-        'Missing Drive folder env var. Set GDRIVE_FOLDER_ID.',
-      );
-    }
-    console.log(`Listing IGC files in Drive folder ${folderId}...`);
-    sources = await listDriveSources(folderId);
-  } else {
-    const dir = args.localDir!;
-    if (!fs.existsSync(dir)) throw new Error(`Local IGC dir not found: ${dir}`);
-    if (isBlockedFixturePath(dir)) {
-      throw new Error(
-        `Refusing to ingest fixture logs from "${dir}". Use your real local logs folder or --drive.`,
-      );
-    }
-    sources = localSources(dir);
+  const dir = args.localDir;
+  if (!fs.existsSync(dir)) throw new Error(`Local IGC dir not found: ${dir}`);
+  if (isBlockedFixturePath(dir)) {
+    throw new Error(
+      `Refusing to ingest fixture logs from "${dir}". Use your real local logs folder.`,
+    );
   }
+  const sources: IgcSource[] = localSources(dir);
   console.log(`Found ${sources.length} IGC file(s).`);
 
   const newFlights: Flight[] = [];

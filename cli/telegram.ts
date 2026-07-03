@@ -3,16 +3,14 @@
 //   tsx cli/telegram.ts        poll the bot for new .igc documents
 //
 // Flow: read pending updates via getUpdates, accept .igc documents sent from
-// the allowed chat only, download each into ./igc, archive a best-effort copy
-// to Google Drive, then confirm the updates so they are not re-processed. The
-// caller (GitHub Action) commits any new files in ./igc, which triggers the
-// build. Dedup of flights happens downstream in cli/index.ts (by takeoff
-// timestamp), so re-saving the same .igc is always safe.
+// the allowed chat only, download each into ./igc, then confirm the updates so
+// they are not re-processed. The caller (GitHub Action) commits any new files
+// in ./igc, which triggers the build. Dedup of flights happens downstream in
+// cli/index.ts (by takeoff timestamp), so re-saving the same .igc is safe.
 
 import fs from 'node:fs';
 import path from 'node:path';
 import dotenv from 'dotenv';
-import { archiveIgcToDrive } from './drive';
 
 dotenv.config();
 
@@ -78,7 +76,6 @@ async function downloadIgc(token: string, doc: TgDocument): Promise<string> {
 async function main(): Promise<void> {
   const token = requireEnv('TELEGRAM_BOT_TOKEN');
   const allowedChatId = requireEnv('TELEGRAM_CHAT_ID');
-  const driveFolderId = process.env.GDRIVE_FOLDER_ID;
 
   const updates = await tgApi<TgUpdate[]>(token, 'getUpdates', {
     timeout: 0,
@@ -90,7 +87,6 @@ async function main(): Promise<void> {
   fs.mkdirSync(IGC_DIR, { recursive: true });
 
   const saved: string[] = [];
-  const archived: string[] = [];
   // Advance the confirmation offset only past updates we fully handled, so a
   // transient download failure retries on the next poll instead of being lost.
   let confirmUpToId: number | null = null;
@@ -117,18 +113,6 @@ async function main(): Promise<void> {
       fs.writeFileSync(path.join(IGC_DIR, name), content);
       saved.push(name);
       console.log(`[telegram] Saved igc/${name}`);
-
-      if (driveFolderId) {
-        // Best-effort archive — never let a Drive issue block capture/build.
-        try {
-          const result = await archiveIgcToDrive(driveFolderId, name, content);
-          if (result === 'uploaded') archived.push(name);
-        } catch (err) {
-          console.warn(
-            `[telegram] Drive archive failed for ${name} (non-fatal): ${(err as Error).message}`,
-          );
-        }
-      }
       confirmUpToId = update.update_id;
     } catch (err) {
       console.error(
@@ -145,20 +129,14 @@ async function main(): Promise<void> {
   }
 
   if (saved.length > 0) {
-    const lines = [
+    const text = [
       `📥 Received ${saved.length} flight log(s): ${saved.join(', ')}`,
-      archived.length > 0 ? `☁️ Archived to Drive: ${archived.length}` : null,
       `⏳ Build queued — the site will update shortly.`,
-    ].filter(Boolean);
-    await tgApi(token, 'sendMessage', {
-      chat_id: allowedChatId,
-      text: lines.join('\n'),
-    });
+    ].join('\n');
+    await tgApi(token, 'sendMessage', { chat_id: allowedChatId, text });
   }
 
-  console.log(
-    `[telegram] Done. new=${saved.length} archived=${archived.length}.`,
-  );
+  console.log(`[telegram] Done. new=${saved.length}.`);
 }
 
 main().catch((err) => {

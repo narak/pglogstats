@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit",
     "data:local": "tsx cli/index.ts --local",
-    "data:drive": "tsx cli/index.ts --drive",
+    "sync:drive": "tsx cli/sync-drive.ts",
     "telegram:poll": "tsx cli/telegram.ts"
   },
   "dependencies": {

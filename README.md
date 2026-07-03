@@ -12,11 +12,14 @@ See [`requirements.md`](./requirements.md) and [`DESIGN.md`](./DESIGN.md) for th
 
 ```
 Telegram bot  ──►  telegram.yml (poll)  ──►  commit igc/*.igc  ──►  build.yml  ──►  Vite SPA  ──►  GitHub Pages
-   (send .igc)      + best-effort Drive archive                     CLI (cli/) parses igc/ → public/data/*.json
+   (send .igc)                                                     CLI (cli/) parses igc/ → public/data/*.json
 ```
 
-- `cli/telegram.ts` — polls the bot, downloads new `.igc` into `igc/`, archives a copy to Drive.
-- `cli/` — Node/TypeScript pipeline (local/Drive IGC read, IGC parse, ParaglidingEarth GeoJSON lookup, JSON output).
+The committed `igc/` folder is the single source of truth.
+
+- `cli/telegram.ts` — polls the bot, downloads new `.igc` into `igc/`.
+- `cli/sync-drive.ts` — optional one-shot importer to pull existing logs out of a Drive folder into `igc/` (`npm run sync:drive`).
+- `cli/` — Node/TypeScript pipeline (IGC parse, ParaglidingEarth GeoJSON lookup, JSON output).
 - `src/shared/` — shared helpers and stats over already-resolved flights.
 - `src/` — React SPA with hash routing: Dashboard, Flight Log, Analytics.
 
@@ -47,14 +50,21 @@ Required secrets (repo **and** local `.env`):
 - `TELEGRAM_BOT_TOKEN` — bot token from @BotFather.
 - `TELEGRAM_CHAT_ID` — the only chat the bot accepts `.igc` files from.
 
-Optional (Drive archive backup of each captured `.igc`):
+The bot must use polling (no webhook set on it). The build reads only from the
+committed `igc/` folder — no Google Drive dependency.
 
-- `GDRIVE_SERVICE_ACCOUNT` — service-account key JSON. Needs **Editor** access to the
-  folder for the archive upload (read-only is enough only for `npm run data:drive`).
-- `GDRIVE_FOLDER_ID` — the Drive folder that receives the archive copy.
+## Import from Google Drive (optional, one-shot)
 
-The bot must use polling (no webhook set on it). The build reads from the
-committed `igc/` folder, so Drive is a backup, not a build dependency.
+To pull existing `.igc` logs out of a Drive folder into `igc/` (e.g. a one-time
+migration), set `GDRIVE_FOLDER_ID` + `GDRIVE_SERVICE_ACCOUNT` (read-only is fine,
+service account needs read access to the folder) and run:
+
+```bash
+npm run sync:drive     # downloads Drive .igc files into igc/
+```
+
+Then commit the new files in `igc/` and push to trigger a build. This is a
+manual convenience only; the live pipeline never touches Drive.
 
 ## Build
 
