@@ -26,6 +26,32 @@
     "metadataComplete": true
   },
   {
+    "id": "2026-07-01T21:21:12Z",
+    "sourceFileName": "2026-07-01-XFH-000-01.IGC",
+    "date": "2026-07-01",
+    "takeoffTime": "2026-07-01T21:21:12Z",
+    "landingTime": "2026-07-01T21:30:05Z",
+    "durationMinutes": 8.9,
+    "takeoffLat": 37.461067,
+    "takeoffLon": -121.860567,
+    "maxAltitudeAmsl": 361,
+    "maxClimbRate": 1.1,
+    "maxSinkRate": -2,
+    "radialDistanceKm": 0.74,
+    "longestXcKm": 0.74,
+    "gliderHint": "Phi Symphonia 2",
+    "siteId": "lookup-ed-levin-600ft-37-4613-121-86",
+    "gear": {
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
+      "type": "Glider",
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
+    },
+    "isSledder": false,
+    "metadataComplete": true
+  },
+  {
     "id": "2026-06-29T23:00:13Z",
     "sourceFileName": "2026-06-29-XFH-000-01.IGC",
     "date": "2026-06-29",
