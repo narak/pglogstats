@@ -27,22 +27,8 @@ jobs:
 
       - run: npm ci
 
-      - name: Fetch IGC, parse, write data (with retries)
-        env:
-          GDRIVE_SERVICE_ACCOUNT: ${{ secrets.GDRIVE_SERVICE_ACCOUNT }}
-          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
-        run: |
-          for attempt in 1 2 3; do
-            echo "data:drive attempt $attempt/3"
-            if npm run data:drive; then
-              exit 0
-            fi
-            if [ "$attempt" -lt 3 ]; then
-              sleep $((attempt * 15))
-            fi
-          done
-          echo "data:drive failed after 3 attempts"
-          exit 1
+      - name: Parse committed IGC files, write data
+        run: npm run data:local -- igc
 
       - name: Commit data if changed
         run: |
@@ -70,3 +56,28 @@ jobs:
       - uses: actions/configure-pages@v4
       - id: deploy
         uses: actions/deploy-pages@v4
+
+  notify:
+    needs: [build, deploy]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report deploy status to Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          BUILD_RESULT: ${{ needs.build.result }}
+          DEPLOY_RESULT: ${{ needs.deploy.result }}
+        run: |
+          if [ -z "$TELEGRAM_BOT_TOKEN" ] || [ -z "$TELEGRAM_CHAT_ID" ]; then
+            echo "Telegram secrets not set; skipping notification."
+            exit 0
+          fi
+          if [ "$BUILD_RESULT" = "success" ] && [ "$DEPLOY_RESULT" = "success" ]; then
+            TEXT="✅ Site updated and deployed."
+          else
+            TEXT="❌ Build/deploy failed (build=$BUILD_RESULT deploy=$DEPLOY_RESULT). Check GitHub Actions."
+          fi
+          curl -sS -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+            --data-urlencode "text=${TEXT}" > /dev/null

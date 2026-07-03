@@ -106,6 +106,10 @@ and engineering conventions). Product scope and feature requirements live in
 - Data loading is centralized in `src/lib/useData.ts`.
 - Runtime consumes `flights.json` + `sites.json`; no external runtime fetches.
 - Keep CLI enrichment at build time; keep SPA derivation deterministic and side-effect free.
+- Ingestion is decoupled from presentation: raw `.igc` files are captured into the
+  committed `igc/` folder (via the Telegram poll workflow) and are the source of truth for
+  the build. Flight dedup is by takeoff timestamp in `cli/index.ts`, so re-capturing the
+  same log is idempotent. Google Drive is a best-effort archive, not a build dependency.
 
 ---
 

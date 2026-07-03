@@ -1,21 +1,22 @@
 # PgLogStats
 
-A personal paragliding flight-statistics report. A TypeScript CLI parses IGC files
-(from Google Drive or a local folder) into JSON, and a React + Vite SPA renders the
-report. Site and lift signals are resolved at parse time and stored in
-`sites.json` + `flights.json` (`siteId` references), so the frontend has no
-runtime lookup/config dependency.
+A personal paragliding flight-statistics report. Flight logs are captured by
+sending the `.igc` to a Telegram bot; a TypeScript CLI parses committed IGC
+files into JSON, and a React + Vite SPA renders the report. Site and lift
+signals are resolved at parse time and stored in `sites.json` + `flights.json`
+(`siteId` references), so the frontend has no runtime lookup/config dependency.
 
 See [`requirements.md`](./requirements.md) and [`DESIGN.md`](./DESIGN.md) for the spec.
 
 ## Architecture
 
 ```
-Google Drive (IGC)  ──►  CLI (cli/)  ──►  public/data/sites.json + public/data/flights.json  ──►  Vite SPA  ──►  GitHub Pages
-                          resolves site + lift signals and writes site references
+Telegram bot  ──►  telegram.yml (poll)  ──►  commit igc/*.igc  ──►  build.yml  ──►  Vite SPA  ──►  GitHub Pages
+   (send .igc)      + best-effort Drive archive                     CLI (cli/) parses igc/ → public/data/*.json
 ```
 
-- `cli/` — Node/TypeScript pipeline (Drive fetch, IGC parse, ParaglidingEarth GeoJSON lookup, JSON output).
+- `cli/telegram.ts` — polls the bot, downloads new `.igc` into `igc/`, archives a copy to Drive.
+- `cli/` — Node/TypeScript pipeline (local/Drive IGC read, IGC parse, ParaglidingEarth GeoJSON lookup, JSON output).
 - `src/shared/` — shared helpers and stats over already-resolved flights.
 - `src/` — React SPA with hash routing: Dashboard, Flight Log, Analytics.
 
@@ -31,12 +32,29 @@ npm run data:local -- /absolute/path/to/your-real-igc-logs
 npm run dev
 ```
 
-## Production data (Google Drive)
+## Capture (Telegram)
 
-Set the following environment variables (or repo secrets) and run `npm run data:drive`:
+Send a `.igc` as a document to your bot — even offline, Telegram queues it and
+uploads when the phone regains signal. A scheduled workflow does the rest:
 
-- `GDRIVE_SERVICE_ACCOUNT` — service-account key JSON (Drive read-only).
-- `GDRIVE_FOLDER_ID` — the Drive folder containing `.igc` files.
+1. `.github/workflows/telegram.yml` polls the bot (~every 10 min, or manual dispatch),
+   runs `npm run telegram:poll`, and commits new files into `igc/`.
+2. That commit triggers `build.yml`, which parses, builds, and deploys, then
+   replies in the chat with the deploy result.
+
+Required secrets (repo **and** local `.env`):
+
+- `TELEGRAM_BOT_TOKEN` — bot token from @BotFather.
+- `TELEGRAM_CHAT_ID` — the only chat the bot accepts `.igc` files from.
+
+Optional (Drive archive backup of each captured `.igc`):
+
+- `GDRIVE_SERVICE_ACCOUNT` — service-account key JSON. Needs **Editor** access to the
+  folder for the archive upload (read-only is enough only for `npm run data:drive`).
+- `GDRIVE_FOLDER_ID` — the Drive folder that receives the archive copy.
+
+The bot must use polling (no webhook set on it). The build reads from the
+committed `igc/` folder, so Drive is a backup, not a build dependency.
 
 ## Build
 
@@ -54,5 +72,6 @@ npm run preview
 
 ## Deploy
 
-`.github/workflows/build.yml` runs the CLI against Drive, commits updated data, builds
-the SPA, and deploys `dist/` to GitHub Pages on push to `main` (or manual dispatch).
+`.github/workflows/build.yml` parses the committed `igc/` folder (`npm run data:local`),
+commits updated data, builds the SPA, deploys `dist/` to GitHub Pages on push to `main`
+(or manual dispatch), and reports the result back to Telegram.

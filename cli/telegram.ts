@@ -1,0 +1,167 @@
+// Telegram capture CLI (offline-friendly ingestion).
+//
+//   tsx cli/telegram.ts        poll the bot for new .igc documents
+//
+// Flow: read pending updates via getUpdates, accept .igc documents sent from
+// the allowed chat only, download each into ./igc, archive a best-effort copy
+// to Google Drive, then confirm the updates so they are not re-processed. The
+// caller (GitHub Action) commits any new files in ./igc, which triggers the
+// build. Dedup of flights happens downstream in cli/index.ts (by takeoff
+// timestamp), so re-saving the same .igc is always safe.
+
+import fs from 'node:fs';
+import path from 'node:path';
+import dotenv from 'dotenv';
+import { archiveIgcToDrive } from './drive';
+
+dotenv.config();
+
+const IGC_DIR = path.resolve('igc');
+
+interface TgDocument {
+  file_id: string;
+  file_unique_id: string;
+  file_name?: string;
+}
+interface TgMessage {
+  chat?: { id: number };
+  date?: number;
+  document?: TgDocument;
+}
+interface TgUpdate {
+  update_id: number;
+  message?: TgMessage;
+}
+
+function requireEnv(name: string): string {
+  const value = process.env[name];
+  if (!value) throw new Error(`Missing required env var: ${name}`);
+  return value;
+}
+
+async function tgApi<T>(
+  token: string,
+  method: string,
+  params: Record<string, unknown> = {},
+): Promise<T> {
+  const res = await fetch(`https://api.telegram.org/bot${token}/${method}`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(params),
+  });
+  const json = (await res.json()) as { ok: boolean; result?: T; description?: string };
+  if (!json.ok) {
+    throw new Error(`Telegram ${method} failed: ${json.description ?? res.status}`);
+  }
+  return json.result as T;
+}
+
+/** Sanitize an incoming file name into a safe, .igc-suffixed basename. */
+function safeIgcName(raw: string | undefined, fallback: string): string {
+  const base = path.basename((raw ?? '').trim());
+  const cleaned = base.replace(/[^A-Za-z0-9._-]/g, '_').replace(/^\.+/, '');
+  const name = cleaned || fallback;
+  return /\.igc$/i.test(name) ? name : `${name}.igc`;
+}
+
+async function downloadIgc(token: string, doc: TgDocument): Promise<string> {
+  const file = await tgApi<{ file_path: string }>(token, 'getFile', {
+    file_id: doc.file_id,
+  });
+  const res = await fetch(
+    `https://api.telegram.org/file/bot${token}/${file.file_path}`,
+  );
+  if (!res.ok) throw new Error(`Download failed (${res.status}) for ${doc.file_name}`);
+  return await res.text();
+}
+
+async function main(): Promise<void> {
+  const token = requireEnv('TELEGRAM_BOT_TOKEN');
+  const allowedChatId = requireEnv('TELEGRAM_CHAT_ID');
+  const driveFolderId = process.env.GDRIVE_FOLDER_ID;
+
+  const updates = await tgApi<TgUpdate[]>(token, 'getUpdates', {
+    timeout: 0,
+    allowed_updates: ['message'],
+  });
+  updates.sort((a, b) => a.update_id - b.update_id);
+  console.log(`[telegram] Fetched ${updates.length} pending update(s).`);
+
+  fs.mkdirSync(IGC_DIR, { recursive: true });
+
+  const saved: string[] = [];
+  const archived: string[] = [];
+  // Advance the confirmation offset only past updates we fully handled, so a
+  // transient download failure retries on the next poll instead of being lost.
+  let confirmUpToId: number | null = null;
+
+  for (const update of updates) {
+    const msg = update.message;
+    // Auth: only accept files from the configured chat. Anything else is
+    // acknowledged (confirmed) and ignored.
+    const fromAllowed = msg?.chat && String(msg.chat.id) === allowedChatId;
+    const doc = msg?.document;
+    const isIgc = doc && /\.igc$/i.test(doc.file_name ?? '');
+
+    if (!fromAllowed || !doc || !isIgc) {
+      if (msg && !fromAllowed) {
+        console.warn(`[telegram] Ignoring message from unauthorized chat ${msg.chat?.id}.`);
+      }
+      confirmUpToId = update.update_id;
+      continue;
+    }
+
+    try {
+      const name = safeIgcName(doc.file_name, `flight-${msg?.date ?? doc.file_unique_id}`);
+      const content = await downloadIgc(token, doc);
+      fs.writeFileSync(path.join(IGC_DIR, name), content);
+      saved.push(name);
+      console.log(`[telegram] Saved igc/${name}`);
+
+      if (driveFolderId) {
+        // Best-effort archive — never let a Drive issue block capture/build.
+        try {
+          const result = await archiveIgcToDrive(driveFolderId, name, content);
+          if (result === 'uploaded') archived.push(name);
+        } catch (err) {
+          console.warn(
+            `[telegram] Drive archive failed for ${name} (non-fatal): ${(err as Error).message}`,
+          );
+        }
+      }
+      confirmUpToId = update.update_id;
+    } catch (err) {
+      console.error(
+        `[telegram] Failed to capture update ${update.update_id}: ${(err as Error).message}. Will retry next poll.`,
+      );
+      break;
+    }
+  }
+
+  // Confirm handled updates so they are not returned again.
+  if (confirmUpToId != null) {
+    await tgApi(token, 'getUpdates', { offset: confirmUpToId + 1, timeout: 0 });
+    console.log(`[telegram] Confirmed updates up to ${confirmUpToId}.`);
+  }
+
+  if (saved.length > 0) {
+    const lines = [
+      `📥 Received ${saved.length} flight log(s): ${saved.join(', ')}`,
+      archived.length > 0 ? `☁️ Archived to Drive: ${archived.length}` : null,
+      `⏳ Build queued — the site will update shortly.`,
+    ].filter(Boolean);
+    await tgApi(token, 'sendMessage', {
+      chat_id: allowedChatId,
+      text: lines.join('\n'),
+    });
+  }
+
+  console.log(
+    `[telegram] Done. new=${saved.length} archived=${archived.length}.`,
+  );
+}
+
+main().catch((err) => {
+  console.error('Fatal:', err instanceof Error ? err.message : err);
+  process.exit(1);
+});
