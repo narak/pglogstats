@@ -37,3 +37,25 @@ export function StatCard({ value, label, sub }: { value: string; label: string; 
 export function EmptyState({ message }: { message: string }) {
   return <div className="empty">{message}</div>;
 }
+
+/**
+ * Shows a metric value with its imperial equivalent tucked underneath in a
+ * smaller, dimmed font — reads as a subtitle instead of crowding the value.
+ * In right-aligned (`.col-num`) contexts both lines right-align automatically.
+ */
+export function Measure({
+  primary,
+  alt,
+  className,
+}: {
+  primary: string;
+  alt: string;
+  className?: string;
+}) {
+  return (
+    <span className={`measure ${className ?? ''}`}>
+      <span className="measure-primary mono">{primary}</span>
+      <span className="measure-alt mono">{alt}</span>
+    </span>
+  );
+}

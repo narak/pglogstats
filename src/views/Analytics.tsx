@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import {
   Bar,
   BarChart,
@@ -12,8 +12,8 @@ import {
   YAxis,
   ZAxis,
 } from 'recharts';
-import { Card, EmptyState, Section } from '../components/primitives';
-import { fmtDate, fmtDuration, fmtNum } from '../lib/format';
+import { Card, EmptyState, Measure, Section } from '../components/primitives';
+import { fmtDate, fmtDuration, fmtFeet, fmtFtPerMin, fmtNum } from '../lib/format';
 import { liftLabel } from '../shared/domain';
 import type { AppData } from '../lib/useData';
 import {
@@ -251,7 +251,12 @@ export function Analytics({ data, navigate }: Props) {
       <Section title="Top 10 by max altitude">
         <TopTable
           rows={topAltitude}
-          value={(f) => `${fmtNum(f.flight.maxAltitudeAmsl, 0)} m`}
+          value={(f) => (
+            <Measure
+              primary={`${fmtNum(f.flight.maxAltitudeAmsl, 0)} m`}
+              alt={fmtFeet(f.flight.maxAltitudeAmsl)}
+            />
+          )}
           onPick={gotoFlight}
         />
       </Section>
@@ -293,8 +298,14 @@ function ScatterTooltip({
       <div className="mono">{fmtDate(p.date || '')}</div>
       <div>{p.site || 'Unknown site'} · {p.lift || 'Unknown'}</div>
       <div className="muted">Duration: <span className="mono">{fmtNum(p.x ?? 0, 1)} min</span></div>
-      <div className="muted">Max altitude: <span className="mono">{fmtNum(p.y ?? 0, 0)} m</span></div>
-      <div className="muted">Climb/Sink: <span className="mono">{fmtNum(p.climb ?? 0, 1)} / {fmtNum(p.sink ?? 0, 1)} m/s</span></div>
+      <div className="muted">
+        Max altitude: <span className="mono">{fmtNum(p.y ?? 0, 0)} m</span>{' '}
+        <span className="unit-alt mono">{fmtFeet(p.y ?? 0)}</span>
+      </div>
+      <div className="muted">
+        Climb/Sink: <span className="mono">{fmtNum(p.climb ?? 0, 1)} / {fmtNum(p.sink ?? 0, 1)} m/s</span>{' '}
+        <span className="unit-alt mono">{fmtFtPerMin(p.climb ?? 0)} / {fmtFtPerMin(p.sink ?? 0)}</span>
+      </div>
       <div className="muted">Radial/XC: <span className="mono">{fmtNum(p.radialKm ?? 0, 1)} / {fmtNum(p.xcKm ?? 0, 1)} km</span></div>
       <div className="muted">Glider: <span className="mono">{p.glider || '—'}</span></div>
       <div className="muted">Log: <span className="mono">{p.sourceFileName || '—'}</span></div>
@@ -353,7 +364,7 @@ function TopTable({
   onPick,
 }: {
   rows: DerivedFlight[];
-  value: (f: DerivedFlight) => string;
+  value: (f: DerivedFlight) => ReactNode;
   onPick: (f: DerivedFlight) => void;
 }) {
   if (rows.length === 0) return <EmptyState message="No data yet." />;

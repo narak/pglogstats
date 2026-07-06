@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
-import { EmptyState } from '../components/primitives';
-import { fmtDate, fmtDuration, fmtNum, fmtTime } from '../lib/format';
+import { useMemo, useState, type ReactNode } from 'react';
+import { EmptyState, Measure } from '../components/primitives';
+import { fmtDate, fmtDuration, fmtFeet, fmtFtPerMin, fmtNum, fmtTime } from '../lib/format';
 import { liftLabel } from '../shared/domain';
 import type { AppData } from '../lib/useData';
 import type { HashRoute } from '../lib/useHashRoute';
@@ -306,7 +306,9 @@ function FlightRow({
         <td>{f.site?.name || 'Unknown'}</td>
         <td className="col-num">{fmtDuration(fl.durationMinutes)}</td>
         <td className="hide-mobile">{liftLabel(f)}</td>
-        <td className="hide-mobile col-num">{fmtNum(fl.maxAltitudeAmsl, 0)} m</td>
+        <td className="hide-mobile col-num">
+          <Measure primary={`${fmtNum(fl.maxAltitudeAmsl, 0)} m`} alt={fmtFeet(fl.maxAltitudeAmsl)} />
+        </td>
         <td className="hide-mobile">{f.gear?.name || '—'}</td>
         <td className="hide-mobile">
           {f.missing.length > 0 && (
@@ -326,9 +328,18 @@ function FlightRow({
               <Detail label="Takeoff Time" value={fmtTime(fl.takeoffTime)} />
               <Detail label="Landing Time" value={fmtTime(fl.landingTime)} />
               <Detail label="Duration" value={fmtDuration(fl.durationMinutes)} />
-              <Detail label="Max Altitude" value={`${fmtNum(fl.maxAltitudeAmsl, 0)} m`} />
-              <Detail label="Max Climb Rate" value={`${fmtNum(fl.maxClimbRate, 1)} m/s`} />
-              <Detail label="Max Sink Rate" value={`${fmtNum(fl.maxSinkRate, 1)} m/s`} />
+              <Detail
+                label="Max Altitude"
+                value={<Measure primary={`${fmtNum(fl.maxAltitudeAmsl, 0)} m`} alt={fmtFeet(fl.maxAltitudeAmsl)} />}
+              />
+              <Detail
+                label="Max Climb Rate"
+                value={<Measure primary={`${fmtNum(fl.maxClimbRate, 1)} m/s`} alt={fmtFtPerMin(fl.maxClimbRate)} />}
+              />
+              <Detail
+                label="Max Sink Rate"
+                value={<Measure primary={`${fmtNum(fl.maxSinkRate, 1)} m/s`} alt={fmtFtPerMin(fl.maxSinkRate)} />}
+              />
               <Detail label="Radial Distance" value={`${fmtNum(fl.radialDistanceKm, 1)} km`} />
               <Detail label="XC Distance" value={`${fmtNum(fl.longestXcKm, 1)} km`} />
             </div>
@@ -387,7 +398,7 @@ function FilterStats({ flights }: { flights: DerivedFlight[] }) {
   );
 }
 
-function Detail({ label, value }: { label: string; value: string }) {
+function Detail({ label, value }: { label: string; value: ReactNode }) {
   return (
     <div className="detail-item">
       <span className="dl">{label}</span>

@@ -1,5 +1,5 @@
-import { Card, Section, StatCard } from '../components/primitives';
-import { fmtDate, fmtDuration, fmtHours, fmtInt, fmtNum } from '../lib/format';
+import { Card, Measure, Section, StatCard } from '../components/primitives';
+import { fmtDate, fmtDuration, fmtFeet, fmtFtPerMin, fmtHours, fmtInt, fmtNum } from '../lib/format';
 import type { AppData } from '../lib/useData';
 import {
   hoursByLiftSignals,
@@ -58,10 +58,10 @@ export function Dashboard({ data, navigate }: Props) {
   const recordRow = (
     label: string,
     entry: RecordEntry | null,
-    render: (e: RecordEntry) => { value: string; meta: string },
+    render: (e: RecordEntry) => { value: string; alt?: string; meta: string },
   ) => {
     if (!entry) return null;
-    const { value, meta } = render(entry);
+    const { value, alt, meta } = render(entry);
     return (
       <div
         className="rec-row link"
@@ -73,6 +73,7 @@ export function Dashboard({ data, navigate }: Props) {
         <span className="rec-label">{label}</span>
         <span className="rec-value">
           <div className="rec-num mono">{value}</div>
+          {alt && <div className="rec-alt mono">{alt}</div>}
           <div className="rec-meta">{meta}</div>
         </span>
       </div>
@@ -139,10 +140,12 @@ export function Dashboard({ data, navigate }: Props) {
             }))}
             {recordRow('Highest altitude (AMSL)', records.highestAltitude, (e) => ({
               value: `${fmtInt(e.value)} m`,
+              alt: fmtFeet(e.value),
               meta: fmtDate(e.flight.flight.takeoffTime),
             }))}
             {recordRow('Best climb rate', records.bestClimbRate, (e) => ({
               value: `${fmtNum(e.value, 1)} m/s`,
+              alt: fmtFtPerMin(e.value),
               meta: fmtDate(e.flight.flight.takeoffTime),
             }))}
             {recordRow('Furthest from takeoff', records.furthestFromTakeoff, (e) => ({
@@ -202,7 +205,7 @@ export function Dashboard({ data, navigate }: Props) {
                       {site.elevationM != null && (
                         <div className="detail-item">
                           <span className="dl">Elevation</span>
-                          <span className="mono">{fmtInt(site.elevationM)} m</span>
+                          <Measure primary={`${fmtInt(site.elevationM)} m`} alt={fmtFeet(site.elevationM)} />
                         </div>
                       )}
                       {site.region && (
