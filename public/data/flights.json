@@ -13,7 +13,7 @@
     "maxSinkRate": -14.8,
     "radialDistanceKm": 0.46,
     "longestXcKm": 0.27,
-    "gliderHint": "Phi Symphonia 2",
+    "gliderHint": "Niviuk Ikuma 3P",
     "siteId": "lookup-mussel-rock-aka-the-dumps-37-6708-122-494",
     "gear": {
       "id": "gear-phi-symphonia-2",
@@ -39,7 +39,7 @@
     "maxSinkRate": -2.2,
     "radialDistanceKm": 1.94,
     "longestXcKm": 1.93,
-    "gliderHint": "Phi Symphonia 2",
+    "gliderHint": "Niviuk Ikuma 3P",
     "siteId": "lookup-ed-levin-37-4756-121-861",
     "gear": {
       "id": "gear-phi-symphonia-2",
@@ -65,7 +65,7 @@
     "maxSinkRate": -1.4,
     "radialDistanceKm": 6.67,
     "longestXcKm": 0.4,
-    "gliderHint": "Phi Symphonia 2",
+    "gliderHint": "Niviuk Ikuma 3P",
     "siteId": "lookup-pacifica-dumps-san-francisco-37-6719-122-494",
     "gear": {
       "id": "gear-phi-symphonia-2",
