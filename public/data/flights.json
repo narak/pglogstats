@@ -23,7 +23,8 @@
       "model": "Ikuma 3P"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 3.63
   },
   {
     "id": "2026-07-12T19:45:12Z",
@@ -49,7 +50,8 @@
       "model": "Ikuma 3P"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 9.17
   },
   {
     "id": "2026-07-11T23:04:41Z",
@@ -75,7 +77,8 @@
       "model": "Ikuma 3P"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 20.78
   },
   {
     "id": "2026-07-08T23:39:35Z",
@@ -101,7 +104,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 11.12
   },
   {
     "id": "2026-07-05T21:40:34Z",
@@ -127,7 +131,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 28.84
   },
   {
     "id": "2026-07-03T21:00:30Z",
@@ -153,7 +158,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 6.19
   },
   {
     "id": "2026-07-03T19:28:05Z",
@@ -179,7 +185,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 9.34
   },
   {
     "id": "2026-07-02T23:01:05Z",
@@ -205,7 +212,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 40.17
   },
   {
     "id": "2026-07-01T21:21:12Z",
@@ -231,7 +239,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 3.05
   },
   {
     "id": "2026-06-29T23:00:13Z",
@@ -257,7 +266,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 20.56
   },
   {
     "id": "2026-06-27T00:27:30Z",
@@ -283,7 +293,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 9.55
   },
   {
     "id": "2026-06-20T20:01:45Z",
@@ -309,7 +320,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 16.94
   },
   {
     "id": "2026-06-20T18:52:15Z",
@@ -335,7 +347,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 4.16
   },
   {
     "id": "2026-06-19T20:02:07Z",
@@ -361,7 +374,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 24.22
   },
   {
     "id": "2026-06-13T20:39:30Z",
@@ -387,7 +401,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 11.1
   },
   {
     "id": "2026-06-13T01:33:10Z",
@@ -413,7 +428,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 44.3
   },
   {
     "id": "2026-06-12T18:50:41Z",
@@ -439,7 +455,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 25.29
   },
   {
     "id": "2026-06-12T00:58:00Z",
@@ -465,7 +482,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 29.05
   },
   {
     "id": "2026-06-11T19:11:41Z",
@@ -491,7 +509,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 36.63
   },
   {
     "id": "2026-06-11T01:06:42Z",
@@ -517,7 +536,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 33.37
   },
   {
     "id": "2026-06-10T18:59:30Z",
@@ -543,7 +563,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 24.96
   },
   {
     "id": "2026-06-10T00:47:04Z",
@@ -569,7 +590,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 24.52
   },
   {
     "id": "2026-06-09T18:38:10Z",
@@ -595,7 +617,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 22.26
   },
   {
     "id": "2026-06-08T01:42:14Z",
@@ -621,7 +644,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 15.55
   },
   {
     "id": "2026-06-05T21:26:08Z",
@@ -647,7 +671,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 20.71
   },
   {
     "id": "2026-05-31T19:40:13Z",
@@ -673,7 +698,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 14.91
   },
   {
     "id": "2026-05-30T19:39:16Z",
@@ -699,7 +725,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 7.08
   },
   {
     "id": "2026-05-27T19:02:44Z",
@@ -725,7 +752,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 25.84
   },
   {
     "id": "2026-05-24T19:18:55Z",
@@ -751,7 +779,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 15.18
   },
   {
     "id": "2026-05-10T19:32:26Z",
@@ -777,7 +806,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 0
   },
   {
     "id": "2026-05-10T18:11:38Z",
@@ -803,7 +833,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 5.77
   },
   {
     "id": "2026-04-25T17:28:11Z",
@@ -829,7 +860,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 48.06
   },
   {
     "id": "2026-04-24T23:54:20Z",
@@ -855,7 +887,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 45.61
   },
   {
     "id": "2026-04-24T19:30:27Z",
@@ -881,7 +914,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 21.42
   },
   {
     "id": "2026-04-24T17:46:56Z",
@@ -907,7 +941,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 10.29
   },
   {
     "id": "2026-04-24T01:23:37Z",
@@ -933,7 +968,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 9.37
   },
   {
     "id": "2026-03-23T01:11:16Z",
@@ -959,7 +995,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 39.4
   },
   {
     "id": "2026-03-23T00:02:02Z",
@@ -985,7 +1022,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 13.04
   },
   {
     "id": "2026-03-22T22:30:08Z",
@@ -1011,7 +1049,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 8.67
   },
   {
     "id": "2026-02-20T18:12:01Z",
@@ -1037,7 +1076,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 47.31
   },
   {
     "id": "2026-02-20T18:11:30Z",
@@ -1057,7 +1097,8 @@
     "siteId": "lookup-gravedad-cero-tapalpa-jalisco-19-9422-103-654",
     "gear": null,
     "isSledder": false,
-    "metadataComplete": false
+    "metadataComplete": false,
+    "totalDistanceKm": 0
   },
   {
     "id": "2026-02-20T16:23:29Z",
@@ -1083,7 +1124,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 7.55
   },
   {
     "id": "2026-02-19T19:33:38Z",
@@ -1109,7 +1151,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 20.47
   },
   {
     "id": "2026-02-19T18:16:38Z",
@@ -1135,7 +1178,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 32.8
   },
   {
     "id": "2026-02-19T16:24:20Z",
@@ -1161,7 +1205,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 8.39
   },
   {
     "id": "2026-02-18T18:11:17Z",
@@ -1187,7 +1232,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 19.7
   },
   {
     "id": "2026-02-18T15:56:32Z",
@@ -1213,7 +1259,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 6.61
   },
   {
     "id": "2026-02-17T18:02:34Z",
@@ -1239,7 +1286,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 33.57
   },
   {
     "id": "2026-02-17T16:02:20Z",
@@ -1265,7 +1313,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 7.02
   },
   {
     "id": "2026-02-16T17:57:46Z",
@@ -1291,7 +1340,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 12
   },
   {
     "id": "2026-02-16T16:00:39Z",
@@ -1317,7 +1367,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 9.49
   },
   {
     "id": "2026-02-15T18:01:47Z",
@@ -1343,7 +1394,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 7.01
   },
   {
     "id": "2026-02-15T16:09:38Z",
@@ -1369,7 +1421,8 @@
       "model": "Symphonia 2"
     },
     "isSledder": false,
-    "metadataComplete": true
+    "metadataComplete": true,
+    "totalDistanceKm": 6.74
   },
   {
     "id": "2025-11-14T20:49:15Z",
@@ -1389,7 +1442,8 @@
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
     "isSledder": false,
-    "metadataComplete": false
+    "metadataComplete": false,
+    "totalDistanceKm": 20.2
   },
   {
     "id": "2025-11-14T14:18:04Z",
@@ -1409,7 +1463,8 @@
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
     "isSledder": false,
-    "metadataComplete": false
+    "metadataComplete": false,
+    "totalDistanceKm": 15.53
   },
   {
     "id": "2025-11-14T13:01:25Z",
@@ -1429,7 +1484,8 @@
     "siteId": "lookup-iquique-alto-hospicio-20-2819-70-1076",
     "gear": null,
     "isSledder": false,
-    "metadataComplete": false
+    "metadataComplete": false,
+    "totalDistanceKm": 5.92
   },
   {
     "id": "2025-11-13T20:43:12Z",
@@ -1449,7 +1505,8 @@
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
     "isSledder": false,
-    "metadataComplete": false
+    "metadataComplete": false,
+    "totalDistanceKm": 13.23
   },
   {
     "id": "2025-11-13T13:41:34Z",
@@ -1469,7 +1526,8 @@
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
     "isSledder": false,
-    "metadataComplete": false
+    "metadataComplete": false,
+    "totalDistanceKm": 27.86
   },
   {
     "id": "2025-11-12T13:28:22Z",
@@ -1489,7 +1547,8 @@
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
     "isSledder": false,
-    "metadataComplete": false
+    "metadataComplete": false,
+    "totalDistanceKm": 30.53
   },
   {
     "id": "2025-11-11T13:22:05Z",
@@ -1509,7 +1568,8 @@
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
     "isSledder": false,
-    "metadataComplete": false
+    "metadataComplete": false,
+    "totalDistanceKm": 33.84
   },
   {
     "id": "2025-11-10T13:59:21Z",
@@ -1529,7 +1589,8 @@
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
     "isSledder": false,
-    "metadataComplete": false
+    "metadataComplete": false,
+    "totalDistanceKm": 21.05
   },
   {
     "id": "2025-11-09T13:42:35Z",
@@ -1549,7 +1610,8 @@
     "siteId": "lookup-alto-hospicio-20-2736-70-1103",
     "gear": null,
     "isSledder": false,
-    "metadataComplete": false
+    "metadataComplete": false,
+    "totalDistanceKm": 5.74
   },
   {
     "id": "2025-10-24T22:28:38Z",
@@ -1569,7 +1631,8 @@
     "siteId": "lookup-pacifica-dumps-san-francisco-37-6719-122-494",
     "gear": null,
     "isSledder": false,
-    "metadataComplete": false
+    "metadataComplete": false,
+    "totalDistanceKm": 12.52
   },
   {
     "id": "2025-10-18T20:20:31Z",
@@ -1589,7 +1652,8 @@
     "siteId": "lookup-ed-levin-300ft-37-4611-121-865",
     "gear": null,
     "isSledder": false,
-    "metadataComplete": false
+    "metadataComplete": false,
+    "totalDistanceKm": 29.22
   },
   {
     "id": "2025-10-18T19:41:25Z",
@@ -1609,7 +1673,8 @@
     "siteId": "lookup-ed-levin-37-4756-121-861",
     "gear": null,
     "isSledder": false,
-    "metadataComplete": false
+    "metadataComplete": false,
+    "totalDistanceKm": 5.62
   },
   {
     "id": "2025-10-18T18:24:16Z",
@@ -1629,6 +1694,7 @@
     "siteId": "lookup-ed-levin-37-4756-121-861",
     "gear": null,
     "isSledder": false,
-    "metadataComplete": false
+    "metadataComplete": false,
+    "totalDistanceKm": 4.16
   }
 ]
