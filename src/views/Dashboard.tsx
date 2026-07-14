@@ -156,6 +156,10 @@ export function Dashboard({ data, navigate }: Props) {
               value: `${fmtNum(e.value, 1)} km`,
               meta: fmtDate(e.flight.flight.takeoffTime),
             }))}
+            {recordRow('Max total distance', records.maxTotalDistance, (e) => ({
+              value: `${fmtNum(e.value, 1)} km`,
+              meta: fmtDate(e.flight.flight.takeoffTime),
+            }))}
           </div>
         </Card>
       </Section>

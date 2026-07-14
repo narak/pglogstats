@@ -55,6 +55,7 @@ export interface Flight {
   maxSinkRate: number;
   radialDistanceKm: number;
   longestXcKm: number;
+  totalDistanceKm: number;
   gliderHint: string | null; // raw HFGTY/HFGID hint
   siteId: string | null; // reference into public/data/sites.json
   gear: Gear | null; // fully resolved gear snapshot from IGC headers

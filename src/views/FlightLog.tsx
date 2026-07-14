@@ -342,6 +342,7 @@ function FlightRow({
               />
               <Detail label="Radial Distance" value={`${fmtNum(fl.radialDistanceKm, 1)} km`} />
               <Detail label="XC Distance" value={`${fmtNum(fl.longestXcKm, 1)} km`} />
+              <Detail label="Total Distance" value={`${fmtNum(fl.totalDistanceKm, 1)} km`} />
             </div>
             <div className="detail-meta">
               <span className="muted">Lift profile: {liftLabel(f)}</span>

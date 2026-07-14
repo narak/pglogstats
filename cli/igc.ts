@@ -24,6 +24,7 @@ export interface ParsedFlight {
   maxSinkRate: number;
   radialDistanceKm: number;
   longestXcKm: number;
+  totalDistanceKm: number;
   fixCount: number;
 }
 
@@ -173,9 +174,12 @@ export function parseIgc(content: string): ParsedFlight {
   const { climb, sink } = climbRates(fixes);
 
   let radialDistanceKm = 0;
-  for (const f of fixes) {
+  let totalDistanceKm = 0;
+  for (let i = 0; i < fixes.length; i++) {
+    const f = fixes[i];
     const d = haversineKm(first.lat, first.lon, f.lat, f.lon);
     if (d > radialDistanceKm) radialDistanceKm = d;
+    if (i > 0) totalDistanceKm += haversineKm(fixes[i - 1].lat, fixes[i - 1].lon, f.lat, f.lon);
   }
   const longestXcKm = haversineKm(first.lat, first.lon, last.lat, last.lon);
 
@@ -202,6 +206,7 @@ export function parseIgc(content: string): ParsedFlight {
     maxSinkRate: round(sink, 2),
     radialDistanceKm: round(radialDistanceKm, 2),
     longestXcKm: round(longestXcKm, 2),
+    totalDistanceKm: round(totalDistanceKm, 2),
     fixCount: fixes.length,
   };
 }

@@ -63,6 +63,7 @@ export interface PersonalRecords {
   bestClimbRate: RecordEntry | null;
   furthestFromTakeoff: RecordEntry | null;
   longestXc: RecordEntry | null;
+  maxTotalDistance: RecordEntry | null;
 }
 
 function maxBy(
@@ -84,6 +85,7 @@ export function personalRecords(flights: DerivedFlight[]): PersonalRecords {
     bestClimbRate: maxBy(flights, (f) => f.flight.maxClimbRate),
     furthestFromTakeoff: maxBy(flights, (f) => f.flight.radialDistanceKm),
     longestXc: maxBy(flights, (f) => f.flight.longestXcKm),
+    maxTotalDistance: maxBy(flights, (f) => f.flight.totalDistanceKm),
   };
 }
 

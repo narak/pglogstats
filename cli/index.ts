@@ -282,6 +282,7 @@ async function main(): Promise<void> {
         maxSinkRate: parsed.maxSinkRate,
         radialDistanceKm: parsed.radialDistanceKm,
         longestXcKm: parsed.longestXcKm,
+        totalDistanceKm: parsed.totalDistanceKm,
         gliderHint: parsed.gliderHint,
         siteId: resolved.site?.id ?? null,
         gear,
@@ -304,10 +305,25 @@ async function main(): Promise<void> {
     b.id.localeCompare(a.id),
     );
 
+  const sourceByName = new Map<string, IgcSource>(sources.map((s) => [s.name, s]));
+
   // Backfill legacy rows and normalize into flight.siteId + sites.json.
   for (const f of allFlights) {
     const legacy = f as LegacyFlight;
     if (legacy.site) siteById.set(legacy.site.id, legacy.site);
+    if ((f as Partial<Flight>).totalDistanceKm == null) {
+      const source = f.sourceFileName ? sourceByName.get(f.sourceFileName) : undefined;
+      if (source) {
+        try {
+          const reparsed = parseIgc(await source.read());
+          f.totalDistanceKm = reparsed.totalDistanceKm;
+        } catch {
+          f.totalDistanceKm = 0;
+        }
+      } else {
+        f.totalDistanceKm = 0;
+      }
+    }
     delete (f as unknown as Record<string, unknown>).classification;
     delete (f as unknown as Record<string, unknown>).matchedWindow;
     if ((f as { sourceFileName?: string | null }).sourceFileName == null) {
