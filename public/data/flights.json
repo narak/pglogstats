@@ -16,11 +16,11 @@
     "gliderHint": "Niviuk Ikuma 3P",
     "siteId": "lookup-mussel-rock-aka-the-dumps-37-6708-122-494",
     "gear": {
-      "id": "gear-phi-symphonia-2",
-      "name": "Phi Symphonia 2",
+      "id": "gear-niviuk-ikuma-3p",
+      "name": "Niviuk Ikuma 3P",
       "type": "Glider",
-      "manufacturer": "Phi",
-      "model": "Symphonia 2"
+      "manufacturer": "Niviuk",
+      "model": "Ikuma 3P"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -42,11 +42,11 @@
     "gliderHint": "Niviuk Ikuma 3P",
     "siteId": "lookup-ed-levin-37-4756-121-861",
     "gear": {
-      "id": "gear-phi-symphonia-2",
-      "name": "Phi Symphonia 2",
+      "id": "gear-niviuk-ikuma-3p",
+      "name": "Niviuk Ikuma 3P",
       "type": "Glider",
-      "manufacturer": "Phi",
-      "model": "Symphonia 2"
+      "manufacturer": "Niviuk",
+      "model": "Ikuma 3P"
     },
     "isSledder": false,
     "metadataComplete": true
@@ -68,11 +68,11 @@
     "gliderHint": "Niviuk Ikuma 3P",
     "siteId": "lookup-pacifica-dumps-san-francisco-37-6719-122-494",
     "gear": {
-      "id": "gear-phi-symphonia-2",
-      "name": "Phi Symphonia 2",
+      "id": "gear-niviuk-ikuma-3p",
+      "name": "Niviuk Ikuma 3P",
       "type": "Glider",
-      "manufacturer": "Phi",
-      "model": "Symphonia 2"
+      "manufacturer": "Niviuk",
+      "model": "Ikuma 3P"
     },
     "isSledder": false,
     "metadataComplete": true
