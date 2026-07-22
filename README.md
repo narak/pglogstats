@@ -42,8 +42,13 @@ uploads when the phone regains signal. A scheduled workflow does the rest:
 
 1. `.github/workflows/telegram.yml` polls the bot (~every 10 min, or manual dispatch),
    runs `npm run telegram:poll`, and commits new files into `igc/`.
-2. That commit triggers `build.yml`, which parses, builds, and deploys, then
-   replies in the chat with the deploy result.
+2. If it committed anything, it explicitly dispatches `build.yml` (via
+   `gh workflow run`), which parses, builds, and deploys, then replies in the
+   chat with the deploy result. (A plain `git push` with the default
+   `GITHUB_TOKEN` would *not* trigger `build.yml`'s `on: push` — GitHub
+   exempts pushes made with the default token from triggering other
+   workflows — so the explicit dispatch is what actually chains the two
+   workflows together.)
 
 Required secrets (repo **and** local `.env`):
 

@@ -1,9 +1,16 @@
 name: Telegram IGC Capture
 
 # Polls the Telegram bot for newly-sent .igc files, commits them into igc/,
-# and pushes. That push triggers build.yml (Build and Deploy PgLogStats),
-# which regenerates data and deploys. GitHub cron is best-effort, so expect a
-# few minutes of lag; you can also trigger a poll manually.
+# and pushes, then explicitly dispatches build.yml (Build and Deploy
+# PgLogStats), which regenerates data and deploys. GitHub cron is
+# best-effort, so expect a few minutes of lag; you can also trigger a poll
+# manually.
+#
+# The push alone would NOT trigger build.yml's `on: push`: pushes made with
+# the default GITHUB_TOKEN are exempt from triggering other workflows
+# (GitHub's anti-recursion rule). So instead of relying on the push event,
+# this workflow explicitly fires build.yml via `gh workflow run`, which
+# works fine with GITHUB_TOKEN as long as `actions: write` is granted below.
 
 on:
   schedule:
@@ -17,6 +24,7 @@ concurrency:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   capture:
@@ -37,14 +45,23 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: npm run telegram:poll
 
-      - name: Commit new IGC files (triggers build)
+      - name: Commit new IGC files
+        id: commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add igc/
           if git diff --staged --quiet; then
             echo "No new IGC files."
+            echo "committed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "chore: add flight log(s) via Telegram"
             git push
+            echo "committed=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Trigger build/deploy
+        if: steps.commit.outputs.committed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run build.yml --ref "${{ github.ref_name }}"
