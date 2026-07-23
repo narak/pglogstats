@@ -1,5 +1,32 @@
 [
   {
+    "id": "2026-07-21T22:39:56Z",
+    "sourceFileName": "2026-07-21-XFH-000-01.IGC",
+    "date": "2026-07-21",
+    "takeoffTime": "2026-07-21T22:39:56Z",
+    "landingTime": "2026-07-21T23:36:11Z",
+    "durationMinutes": 56.3,
+    "takeoffLat": 37.51745,
+    "takeoffLon": -121.89195,
+    "maxAltitudeAmsl": 912,
+    "maxClimbRate": 3.6,
+    "maxSinkRate": -3.1,
+    "radialDistanceKm": 2.78,
+    "longestXcKm": 1.67,
+    "totalDistanceKm": 23.37,
+    "gliderHint": "Phi Symphonia 2",
+    "siteId": "lookup-mission-ridge-fremont-san-jose-37-5174-121-892",
+    "gear": {
+      "id": "gear-phi-symphonia-2",
+      "name": "Phi Symphonia 2",
+      "type": "Glider",
+      "manufacturer": "Phi",
+      "model": "Symphonia 2"
+    },
+    "isSledder": false,
+    "metadataComplete": true
+  },
+  {
     "id": "2026-07-19T19:57:30Z",
     "sourceFileName": "2026-07-19-XFH-000-01.IGC",
     "date": "2026-07-19",
