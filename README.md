@@ -55,6 +55,15 @@ Required secrets (repo **and** local `.env`):
 - `TELEGRAM_BOT_TOKEN` — bot token from @BotFather.
 - `TELEGRAM_CHAT_ID` — the only chat the bot accepts `.igc` files from.
 
+Optional secret:
+
+- `WE_FLY_CLOUD` — a we-fly.cloud personal API key (`flights:write` scope,
+  from https://we-fly.cloud/developer). When set, each newly-captured `.igc`
+  is also mirrored to we-fly.cloud right after it's saved. This is
+  best-effort: an upload failure is logged but never blocks the local
+  capture, commit, or build — the committed `igc/` file stays the source of
+  truth for this repo. Leave the secret unset to skip mirroring entirely.
+
 The bot must use polling (no webhook set on it). The build reads only from the
 committed `igc/` folder — no Google Drive dependency.
 

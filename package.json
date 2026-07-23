@@ -11,7 +11,8 @@
     "typecheck": "tsc -b --noEmit",
     "data:local": "tsx cli/index.ts --local",
     "sync:drive": "tsx cli/sync-drive.ts",
-    "telegram:poll": "tsx cli/telegram.ts"
+    "telegram:poll": "tsx cli/telegram.ts",
+    "wefly:dry-run": "tsx cli/wefly-dry-run.ts"
   },
   "dependencies": {
     "react": "^18.3.1",

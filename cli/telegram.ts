@@ -7,6 +7,10 @@
 // they are not re-processed. The caller (GitHub Action) commits any new files
 // in ./igc, which triggers the build. Dedup of flights happens downstream in
 // cli/index.ts (by takeoff timestamp), so re-saving the same .igc is safe.
+//
+// Each newly-saved file is also mirrored to we-fly.cloud (best-effort) if
+// WE_FLY_CLOUD is set. A mirror failure is logged but never blocks the local
+// capture — the committed igc/ file is the source of truth for this repo.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -73,9 +77,46 @@ async function downloadIgc(token: string, doc: TgDocument): Promise<string> {
   return await res.text();
 }
 
+export interface WeFlyUploadResult {
+  hash: string;
+  fileName: string;
+  isNew: boolean;
+}
+
+/** Mirror a flight to we-fly.cloud. Throws on failure; caller decides how to handle. */
+export async function uploadToWeFly(apiKey: string, name: string, content: string): Promise<WeFlyUploadResult> {
+  const form = new FormData();
+  form.append('file', new Blob([content], { type: 'application/octet-stream' }), name);
+
+  const res = await fetch('https://we-fly.cloud/api/v1/flights/upload', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'User-Agent': 'pglogstats-telegram-capture (github.com actions)',
+    },
+    body: form,
+  });
+
+  const json = (await res.json()) as
+    | { data: WeFlyUploadResult }
+    | { error: string; error_description?: string };
+
+  if (!res.ok || !('data' in json)) {
+    const err = json as { error?: string; error_description?: string };
+    throw new Error(
+      `${res.status} ${err.error ?? 'unknown_error'}${err.error_description ? `: ${err.error_description}` : ''}`,
+    );
+  }
+  return json.data;
+}
+
 async function main(): Promise<void> {
   const token = requireEnv('TELEGRAM_BOT_TOKEN');
   const allowedChatId = requireEnv('TELEGRAM_CHAT_ID');
+  const weFlyKey = process.env.WE_FLY_CLOUD;
+  if (!weFlyKey) {
+    console.log('[we-fly] WE_FLY_CLOUD not set; skipping we-fly.cloud mirror.');
+  }
 
   const updates = await tgApi<TgUpdate[]>(token, 'getUpdates', {
     timeout: 0,
@@ -114,6 +155,17 @@ async function main(): Promise<void> {
       saved.push(name);
       console.log(`[telegram] Saved igc/${name}`);
       confirmUpToId = update.update_id;
+
+      if (weFlyKey) {
+        try {
+          const result = await uploadToWeFly(weFlyKey, name, content);
+          console.log(
+            `[we-fly] ${result.isNew ? 'Uploaded' : 'Already present'}: ${name} (hash=${result.hash})`,
+          );
+        } catch (err) {
+          console.warn(`[we-fly] Mirror failed for ${name}: ${(err as Error).message}`);
+        }
+      }
     } catch (err) {
       console.error(
         `[telegram] Failed to capture update ${update.update_id}: ${(err as Error).message}. Will retry next poll.`,
@@ -139,7 +191,11 @@ async function main(): Promise<void> {
   console.log(`[telegram] Done. new=${saved.length}.`);
 }
 
-main().catch((err) => {
-  console.error('Fatal:', err instanceof Error ? err.message : err);
-  process.exit(1);
-});
+// Only run when invoked directly (`tsx cli/telegram.ts`), not when other
+// scripts (e.g. the we-fly dry-run) import uploadToWeFly from this module.
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((err) => {
+    console.error('Fatal:', err instanceof Error ? err.message : err);
+    process.exit(1);
+  });
+}
