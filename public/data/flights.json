@@ -1,5 +1,32 @@
 [
   {
+    "id": "2026-07-31T22:32:51Z",
+    "sourceFileName": "2026-07-31-XFH-000-01.IGC",
+    "date": "2026-07-31",
+    "takeoffTime": "2026-07-31T22:32:51Z",
+    "landingTime": "2026-07-31T23:23:54Z",
+    "durationMinutes": 51.1,
+    "takeoffLat": 37.517483,
+    "takeoffLon": -121.8919,
+    "maxAltitudeAmsl": 603,
+    "maxClimbRate": 2,
+    "maxSinkRate": -2.2,
+    "radialDistanceKm": 1.9,
+    "longestXcKm": 1.69,
+    "totalDistanceKm": 23.09,
+    "gliderHint": "Niviuk Hiko P",
+    "siteId": "lookup-mission-ridge-fremont-san-jose-37-5174-121-892",
+    "gear": {
+      "id": "gear-niviuk-hiko-p",
+      "name": "Niviuk Hiko P",
+      "type": "Glider",
+      "manufacturer": "Niviuk",
+      "model": "Hiko"
+    },
+    "isSledder": false,
+    "metadataComplete": true
+  },
+  {
     "id": "2026-07-29T00:01:56Z",
     "sourceFileName": "2026-07-29-XFH-000-01.IGC",
     "date": "2026-07-29",
