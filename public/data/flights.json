@@ -1,5 +1,32 @@
 [
   {
+    "id": "2026-08-02T20:26:05Z",
+    "sourceFileName": "2026-08-02-XFH-000-01.IGC",
+    "date": "2026-08-02",
+    "takeoffTime": "2026-08-02T20:26:05Z",
+    "landingTime": "2026-08-02T20:44:43Z",
+    "durationMinutes": 18.6,
+    "takeoffLat": 38.400283,
+    "takeoffLon": -122.106083,
+    "maxAltitudeAmsl": 1039,
+    "maxClimbRate": 3.1,
+    "maxSinkRate": -2.7,
+    "radialDistanceKm": 8.32,
+    "longestXcKm": 8.32,
+    "totalDistanceKm": 11.02,
+    "gliderHint": "Niviuk Hiko P",
+    "siteId": "lookup-lagoon-valley-38-326-122",
+    "gear": {
+      "id": "gear-niviuk-hiko-p",
+      "name": "Niviuk Hiko P",
+      "type": "Glider",
+      "manufacturer": "Niviuk",
+      "model": "Hiko"
+    },
+    "isSledder": false,
+    "metadataComplete": true
+  },
+  {
     "id": "2026-07-31T22:32:51Z",
     "sourceFileName": "2026-07-31-XFH-000-01.IGC",
     "date": "2026-07-31",
