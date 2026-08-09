@@ -1,5 +1,32 @@
 [
   {
+    "id": "2026-08-08T21:37:46Z",
+    "sourceFileName": "2026-08-08-XFH-000-01.IGC",
+    "date": "2026-08-08",
+    "takeoffTime": "2026-08-08T21:37:46Z",
+    "landingTime": "2026-08-09T00:45:57Z",
+    "durationMinutes": 188.2,
+    "takeoffLat": 37.672017,
+    "takeoffLon": -122.494383,
+    "maxAltitudeAmsl": 185,
+    "maxClimbRate": 1.8,
+    "maxSinkRate": -1.9,
+    "radialDistanceKm": 4.19,
+    "longestXcKm": 0.34,
+    "totalDistanceKm": 69.16,
+    "gliderHint": "Niviuk Hiko P",
+    "siteId": "lookup-pacifica-dumps-san-francisco-37-6719-122-494",
+    "gear": {
+      "id": "gear-niviuk-hiko-p",
+      "name": "Niviuk Hiko P",
+      "type": "Glider",
+      "manufacturer": "Niviuk",
+      "model": "Hiko"
+    },
+    "isSledder": false,
+    "metadataComplete": true
+  },
+  {
     "id": "2026-08-02T20:26:05Z",
     "sourceFileName": "2026-08-02-XFH-000-01.IGC",
     "date": "2026-08-02",
