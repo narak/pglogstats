@@ -1,5 +1,32 @@
 [
   {
+    "id": "2026-08-12T20:38:51Z",
+    "sourceFileName": "2026-08-12-XFH-000-01.IGC",
+    "date": "2026-08-12",
+    "takeoffTime": "2026-08-12T20:38:51Z",
+    "landingTime": "2026-08-12T20:55:19Z",
+    "durationMinutes": 16.5,
+    "takeoffLat": 37.47435,
+    "takeoffLon": -121.859667,
+    "maxAltitudeAmsl": 709,
+    "maxClimbRate": 1.7,
+    "maxSinkRate": -2.6,
+    "radialDistanceKm": 1.92,
+    "longestXcKm": 1.92,
+    "totalDistanceKm": 6.46,
+    "gliderHint": "Niviuk Hiko P",
+    "siteId": "lookup-ed-levin-37-4756-121-861",
+    "gear": {
+      "id": "gear-niviuk-hiko-p",
+      "name": "Niviuk Hiko P",
+      "type": "Glider",
+      "manufacturer": "Niviuk",
+      "model": "Hiko"
+    },
+    "isSledder": false,
+    "metadataComplete": true
+  },
+  {
     "id": "2026-08-08T21:37:46Z",
     "sourceFileName": "2026-08-08-XFH-000-01.IGC",
     "date": "2026-08-08",
